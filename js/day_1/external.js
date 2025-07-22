@@ -6,10 +6,10 @@ number2 = 2;
 number3 = 9;
 
 firstName = "mohamed";
-middleName = "elsayed";
-lastName = `abdellaziz`;
+var middleName = "Elsayed";
+var lastName = `Abdellaziz`;
 
-flag = true;
+var flag = true;
 
 console.log("number 1", number1);
 console.log("number 2", number2);
