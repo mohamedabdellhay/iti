@@ -1,0 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+:root {
+  --main-color: rgb(255, 103, 48);
+}
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+.clear-both {
+  clear: both;
+}
+
+.btn-primary {
+  background-color: #000;
+  color: #ffff;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+ul li {
+  list-style: none;
+}
+header {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 20px;
+}
+
+.logo {
+  float: left;
+}
+
+.logo img {
+  height: 50px;
+  vertical-align: middle;
+}
+
+.logo > span {
+  font-size: 18px;
+  font-weight: 800;
+  margin-left: 10px;
+  margin-bottom: -15px;
+}
+
+.nav {
+  float: right;
+}
+
+.nav ul li {
+  float: left;
+  margin-left: 20px;
+  line-height: 50px;
+  font-size: 16px;
+}
+
+.nav ul li img {
+  height: 20px;
+  vertical-align: middle;
+}
+
+/* styling main section */
+
+main > div {
+  margin-top: 100px;
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+}
+main > div:first {
+}
+
+/* third section  */
+section.third {
+  clear: both;
+}
+.card-item {
+  float: left;
+  width: 30%;
+  border: 1px solid #eee;
+  margin: 10px;
+}
+
+/* styling footer */
+footer {
+  clear: both;
+}
+footer > div > div {
+  float: left;
+  width: 25%;
+}
+footer .subscribe-nav img {
+  margin: 0 10px 0 0;
+}
+footer .subscribe-nav input {
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  padding: 10px 5px;
+  margin: 0 0 20px 0;
+}
+
+footer .subscribe-nav button {
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  padding: 10px 5px;
+  margin: 0 0 20px 0;
+  outline: none;
+  border: none;
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+footer .copyright {
+  text-align: center;
+  background-color: #eee;
+  padding: 20px;
+  float: inline-start;
+  width: 100%;
+}
