@@ -21,6 +21,10 @@
 .mg-top-50 {
   margin-top: 50px;
 }
+a {
+  color: #000;
+  text-decoration: none;
+}
 .float-left {
   float: left;
 }
@@ -95,6 +99,10 @@ ul li {
 .text-center {
   text-align: center;
 }
+.header,
+.footer {
+  background-color: #eee;
+}
 header {
   width: 100%;
   overflow: hidden;
@@ -110,11 +118,11 @@ header {
   vertical-align: middle;
 }
 
-.logo > span {
+.logo > a > span {
   font-size: 18px;
   font-weight: 800;
   margin-left: 10px;
-  margin-bottom: -15px;
+  margin-bottom: -20px;
 }
 
 .nav {
@@ -160,6 +168,12 @@ section.third {
   border: 1px solid #eee;
   margin: 15px;
   padding: 50px;
+  border-top: 4px solid transparent;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.card-item:hover {
+  border-top: 4px solid var(--main-color);
+  cursor: pointer;
 }
 
 .btn {
@@ -196,6 +210,28 @@ textarea {
   border-bottom: 1px solid #333;
   outline: none;
   font-size: 16px;
+}
+textarea {
+  resize: none;
+
+  /* Remove browser-specific styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Remove padding/margin if needed */
+  padding: 0;
+  margin: 0;
+
+  /* Set background/border as needed */
+  background: transparent;
+  height: 70px;
+  vertical-align: bottom;
+}
+textarea::placeholder {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  left: 5px; /* Adjust as needed */
 }
 ::placeholder {
   color: #333;
