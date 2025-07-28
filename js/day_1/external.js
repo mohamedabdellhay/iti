@@ -65,10 +65,14 @@ if (isNumber) {
   console.log("Please enter a valid number.");
 }
 
+let i;
+
 //  print 1-10 numbers using loop
-for (let i = 1; i <= 10; i++) {
+for (i = 1; i <= 10; i++) {
   console.log(Number(num));
 }
+
+console.log(i);
 
 checkNumber(Number(num)); // Call the function to check if the number is positive, negative, or zero
 printMultiplicationTable(Number(num)); // Call the function to print the multiplication table for the number
