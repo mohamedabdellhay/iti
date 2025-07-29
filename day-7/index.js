@@ -95,7 +95,79 @@ const newStudents = [
   { name: "name 1", degree: 92 },
   { name: "name 2", degree: 93 },
 ];
-const firstTwoElements = students.slice(0, 1);
-console.log(firstTwoElements);
+
+students.splice(2, 0, ...newStudents);
 
 console.log(students);
+
+// remove one student at index 4
+students.splice(4, 1);
+console.log(students);
+
+// task number 5
+
+// let birthday = prompt("Please Enter Your Birthday (DD-MM-YYYY): ");
+let birthday = "20-04-2000";
+
+const printUserAge = (birthDate) => {
+  const validDate = /^\d{2}-\d{2}-\d{4}$/.test(birthDate);
+
+  if (!validDate) {
+    alert("Invalid date format. Please use DD-MM-YYYY.");
+    return;
+  }
+  const [day, month, year] = birthDate.split("-").map(Number);
+  const birth = new Date(year, month - 1, day);
+  alert(`Your birthday is: ${birth.toDateString()}`);
+};
+
+printUserAge(birthday);
+
+//////////// Bonus assignments ///////////////
+
+function getDate(dateString) {
+  console.log(dateString);
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const date = new Date(dateString);
+  return days[date.getDay()];
+}
+
+const dateInput = prompt("plz Enter Date in YYYY-MM-DD Formate: ");
+console.log(getDate(dateInput));
+
+// 2-
+const phoneNumber = prompt(
+  "Enter Egyptian Phone Number in international formate: "
+);
+const validatePhoneNumber = function (phone) {
+  const phonePattern = /^00201[0125]\d{8}$/;
+  console.log(phonePattern.test(phone));
+};
+
+validatePhoneNumber(phoneNumber);
+
+// 3-
+function calcUserAge(birth) {
+  const today = new Date();
+  const birthDate = new Date(birth);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  console.log(today.getDate(), birthDate.getDate());
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+  return age;
+}
+
+console.log(`Your age is: ${calcUserAge("2000-04-20")}`);
