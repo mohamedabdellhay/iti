@@ -124,7 +124,7 @@ const printUserAge = (birthDate) => {
 printUserAge(birthday);
 
 //////////// Bonus assignments ///////////////
-
+// 1-
 function getDate(dateString) {
   console.log(dateString);
   const days = [
