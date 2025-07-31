@@ -110,9 +110,9 @@ console.log(students);
 let birthday = "20-04-2000";
 
 const printUserAge = (birthDate) => {
-  const validDate = /^\d{2}-\d{2}-\d{4}$/.test(birthDate);
+  const datePattern = /^\d{2}-\d{2}-\d{4}$/.test(birthDate);
 
-  if (!validDate) {
+  if (!datePattern) {
     alert("Invalid date format. Please use DD-MM-YYYY.");
     return;
   }
