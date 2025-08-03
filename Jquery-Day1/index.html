@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jquery-Day1</title>
+    <!-- CDN [Content Delievry Network] -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .colorRed {
+        background-color: red;
+      }
+
+      span {
+        background-color: green;
+      }
+    </style>
+    <script src="/jquery-3.7.1.min.js"></script>
+    <!-- <script>
+      var h1 = document.querySelector("h1");
+      //   console.log(h1);
+
+      //   Native js
+      //   onload = function () {
+      //     console.log($("h1"));
+      //     console.log($("h1")[0]);
+      //     console.log($("h1").get(0));
+      //   };
+
+      //   JQuery v1
+      $(document).ready(function () {
+        console.log($("h1"));
+        console.log($("h1")[0]);
+        console.log($("h1").get(0));
+      });
+
+      //   JQuery v2
+      $("document").ready(function () {
+        console.log($("h1"));
+        console.log($("h1")[0]);
+        console.log($("h1").get(0));
+      });
+
+      //   JQuery v2
+      $(function () {
+        console.log($("h1"));
+        console.log($("h1")[0]);
+        console.log($("h1").get(0));
+      });
+    </script> -->
+  </head>
+  <body>
+    <!-- <h1>HEllo</h1> -->
+    <!-- <a href="#">Google</a> -->
+
+    <!-- <input type="text" />
+    <input type="radio" />
+    <textarea name="" id=""></textarea> -->
+
+    <!-- <h1>ebrahim</h1>
+
+    <div>
+      HEllo
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+    </div> -->
+
+    <!-- <span>one</span>
+    <span>two</span>
+    <span>three</span>
+    <span>four</span>
+    <span>five</span> -->
+
+    <!-- <button onclick="addClass()">Add Class</button> -->
+    <!-- <button>Toggle Class</button> -->
+
+    <!-- <div>first</div> -->
+
+    <div></div>
+
+    <button onclick="genBtns()">generate Buttons</button>
+
+    <script>
+      function genBtns() {
+        var div = document.querySelector("div");
+        for (var i = 0; i < 3; i++) {
+          var btn = document.createElement("button");
+          btn.textContent = i + 1;
+          //   btn.addEventListener("click", function () {
+          //     alert(this.textContent);
+          //   });
+          btn.setAttribute("class", "btns");
+          div.append(btn);
+        }
+      }
+
+      $("div").on("click", ".btns", function () {
+        alert($(this).text());
+      });
+      //   $("span").hover(function () {
+      //     $("span").toggleClass("colorRed");
+      //   });
+
+      //   $("button").click(function () {
+      //     console.log($(this).text()); //     WRAPPER
+      //     $("span").toggleClass("colorRed");
+      //   });
+      //   $("div").css({
+      //     "background-color": "yellow",
+      //   });
+      //   $("div").html("<h2>Hello from jquery</h2>");
+      //   var h2 = document.createElement("h2");
+      //   $(h2).text("hamada");
+      //   //   $("div").append(h2);
+      //   $("div").prepend(h2);
+
+      //   $("div").remove();
+      //   $(h2).appendTo($("div"))
+      //   var a = document.querySelector("[href]");
+      //   $("[href]").css("color", "red");
+
+      //   console.log($(":input"));
+
+      //   console.log($("h1:contains('ebrahim')"));
+
+      //   console.log($("div:contains('HEllo') p"));
+
+      //   function sum(a, b) {
+      //     return a + b;
+      //   }
+
+      //   console.log(sum);
+
+      //   ----------------------------------
+      //   $("span").css("color", "red");
+      //   //   console.log($("span")[0]);
+      //   $("span").each(function (index) {
+      //     // console.log(this.textContent);
+
+      //     console.log(index);
+      //     // ///////////////////////////////////////////// WRAPPER  ////////////////////////////
+      //     console.log($(this).text());
+      //   });
+      //   var sp = document.querySelector("span");
+      //   sp.setAttribute("name", "Ebrahim");
+
+      //   //   attr
+
+      //   $("span").attr("id", "hello");
+      //   $("span").attr("class", "colorRed");
+      //   $("span").attr({
+      //     id: "hello",
+      //     class: "colorRed",
+      //   });
+    </script>
+  </body>
+</html>
