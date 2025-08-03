@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .container {
   max-width: 1200px;
   margin: auto;
@@ -21,4 +26,7 @@
 }
 .highlight {
   background-color: #d5d5d5;
+}
+.hidden {
+  display: none;
 }
