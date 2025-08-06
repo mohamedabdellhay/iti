@@ -13,7 +13,7 @@ th {
   display: grid;
   margin-top: 20px;
 }
-input {
+input[type="text"] {
   min-width: 70%;
   padding: 15px;
   font-size: 18px;
@@ -26,13 +26,14 @@ input {
 }
 button.add {
   background-color: #a6a6a6;
-  padding: 15px 30px;
+  padding: 15px 40px;
   font-size: 18px;
   color: #fff;
   border: none;
   outline: none;
   border-radius: 5px;
   font-weight: 800;
+  cursor: pointer;
 }
 table tr {
   padding: 10px 115px;
@@ -40,4 +41,16 @@ table tr {
 }
 table tr:nth-child(even) {
   background-color: rgb(220 213 213);
+}
+
+.reset {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.line-through {
+  text-decoration: line-through;
+  color: rgba(94, 24, 24, 0.804);
 }
