@@ -1,0 +1,43 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+th {
+  background-color: rgb(204 10 10);
+  padding: 5px 100px;
+  color: #fff;
+  font-weight: 700;
+}
+.tasks {
+  display: grid;
+  margin-top: 20px;
+}
+input {
+  min-width: 70%;
+  padding: 15px;
+  font-size: 18px;
+  /* border: none; */
+  box-shadow: 20px 0px 17px 7px #00000021;
+  outline: none;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-right: 60px;
+}
+button.add {
+  background-color: #a6a6a6;
+  padding: 15px 30px;
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 800;
+}
+table tr {
+  padding: 10px 115px;
+  font-size: 24px;
+}
+table tr:nth-child(even) {
+  background-color: rgb(220 213 213);
+}
