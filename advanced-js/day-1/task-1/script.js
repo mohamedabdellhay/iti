@@ -5,7 +5,32 @@ const add = document.querySelector(".add");
 const tableBody = document.querySelector("table>tbody");
 const checked = document.querySelectorAll("input[type='checkbox']");
 
-console.log("checked", checked);
+function init() {
+  let storage = localStorage.getItem("tasks");
+  if (!storage) return;
+
+  console.log("storage", storage);
+  tasks = JSON.parse(storage);
+  console.log("tasks", tasks);
+  const lastId = tasks.at(-1).id;
+  console.log("last is", lastId);
+  starterId = lastId + 1;
+
+  renderTasks();
+}
+
+const renderTasks = function () {
+  if (!tasks.length) {
+    tableBody.innerHTML = "";
+    return;
+  }
+  const renderTasks = tasks.map((ele) =>
+    tableRow(ele.status, ele.task, ele.id)
+  );
+  console.log("render tasks", renderTasks);
+  tableBody.innerHTML = "";
+  tableBody.insertAdjacentHTML("afterbegin", renderTasks.join());
+};
 
 const tableRow = function (status, task, id) {
   return ` <tr>
@@ -20,75 +45,66 @@ const tableRow = function (status, task, id) {
                   </svg></button></td>
       </tr>`;
 };
-console.log(add, tableBody);
 
-add.addEventListener("click", function () {
-  const taskName = document.querySelector("input[name='task']");
+document.addEventListener("DOMContentLoaded", () => {
+  init();
 
-  if (!taskName.value.trim()) return;
+  add.addEventListener("click", function () {
+    const taskName = document.querySelector("input[name='task']");
 
-  const newTask = {
-    id: starterId,
-    status: 0,
-    task: taskName.value.trim(),
-  };
-  starterId++;
-  taskName.value = "";
-  tasks.push(newTask);
-  console.log("task name", taskName);
-  console.log("tasks", tasks);
+    if (!taskName.value.trim()) return;
 
-  //  call render tasks
-  renderTasks();
-});
-
-function renderTasks() {
-  if (!tasks.length) {
-    tableBody.innerHTML = "";
-    return;
-  }
-  const renderTasks = tasks.map((ele) =>
-    tableRow(ele.status, ele.task, ele.id)
-  );
-  console.log("render tasks", renderTasks);
-  tableBody.innerHTML = "";
-  tableBody.insertAdjacentHTML("afterbegin", renderTasks.join());
-}
-
-// event listener for switch task status and delete task
-document.addEventListener("click", function (event) {
-  const element = event.target;
-
-  if (element.getAttribute("type") === "checkbox") {
-    const taskId = Number(element.dataset.taskId);
-    if (isNaN(taskId)) {
-      console.error("Invalid task ID:", element.dataset.taskId);
-      return;
-    }
-
-    const taskStatus = element.checked ? 1 : 0;
-    tasks = tasks.map((ele) => {
-      if (ele.id === taskId) {
-        return { ...ele, status: taskStatus };
-      }
-      return ele;
-    });
-    console.log("Updated tasks:", tasks);
-    renderTasks();
-  } else if (element.closest(".remove-task")) {
-    const removeButton = element.closest(".remove-task");
-    const taskId = Number(removeButton.dataset.taskId);
-    console.log("remove btn", removeButton);
-    console.log("task id", taskId);
-
-    if (isNaN(taskId)) {
-      console.error("Invalid task ID:", removeButton.dataset.taskId);
-      return;
-    }
+    const newTask = {
+      id: starterId,
+      status: 0,
+      task: taskName.value.trim(),
+    };
+    starterId++;
+    taskName.value = "";
+    tasks.push(newTask);
+    console.log("task name", taskName);
     console.log("tasks", tasks);
-    tasks = tasks.filter((ele) => ele.id !== taskId);
-    console.log("Tasks after removal:", tasks);
-
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    //  call render tasks
     renderTasks();
-  }
+  });
+
+  // event listener for switch task status and delete task
+  document.addEventListener("click", function (event) {
+    const element = event.target;
+
+    if (element.getAttribute("type") === "checkbox") {
+      const taskId = Number(element.dataset.taskId);
+      if (isNaN(taskId)) {
+        console.error("Invalid task ID:", element.dataset.taskId);
+        return;
+      }
+
+      const taskStatus = element.checked ? 1 : 0;
+      tasks = tasks.map((ele) => {
+        if (ele.id === taskId) {
+          return { ...ele, status: taskStatus };
+        }
+        return ele;
+      });
+      console.log("Updated tasks:", tasks);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      renderTasks();
+    } else if (element.closest(".remove-task")) {
+      const removeButton = element.closest(".remove-task");
+      const taskId = Number(removeButton.dataset.taskId);
+      console.log("remove btn", removeButton);
+      console.log("task id", taskId);
+
+      if (isNaN(taskId)) {
+        console.error("Invalid task ID:", removeButton.dataset.taskId);
+        return;
+      }
+      console.log("tasks", tasks);
+      tasks = tasks.filter((ele) => ele.id !== taskId);
+      console.log("Tasks after removal:", tasks);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      renderTasks();
+    }
+  });
 });
