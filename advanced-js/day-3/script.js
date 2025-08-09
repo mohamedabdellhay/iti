@@ -1,6 +1,7 @@
 console.log("start task for day-3");
 const productsApi = "https://fakestoreapi.com/products";
 const productsUl = document.querySelector("ul");
+const productsOptions = document.getElementById("products");
 const productCard = document.getElementById("product-card");
 const overLay = document.querySelector(".overlay");
 console.log("ul", productsUl);
@@ -16,6 +17,9 @@ const product = function (id, title) {
             </div>
         </li>
     `;
+};
+const productOption = function (title, id) {
+  return `<option value="${title}" data-id="${id}" onclick="showProduct(${id})">${title}</option>`;
 };
 
 const renderProductCard = function (image, title, description, price, rating) {
@@ -40,10 +44,6 @@ const renderProductCard = function (image, title, description, price, rating) {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  productsUl.style.display = "block";
-  productsUl.innerHTML =
-    "<p style='display:block;text-align: center'>Loading....</p>";
-
   const xhr = new XMLHttpRequest();
   xhr.open("GET", productsApi, true);
 
@@ -57,24 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (products[0]?.response === 400) {
-        productsUl.innerHTML = "";
-        productsUl.insertAdjacentHTML(
-          "afterbegin",
-          `<p>${products[0].message}</p>`
-        );
         return;
       }
 
       let html = "";
       products.forEach((element) => {
-        html += product(element.id, element.title);
+        html += productOption(element.title, element.id);
       });
-      console.log("products ul", productsUl);
-
-      productsUl.innerHTML = ""; // Clear previous content
-      productsUl.style.display = "grid";
-      productsUl.insertAdjacentHTML("afterbegin", html);
-      console.log("data", products);
+      productsOptions.insertAdjacentHTML("afterbegin", html);
     }
   };
 
