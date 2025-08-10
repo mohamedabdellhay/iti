@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task -1</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: rgb(255, 155, 155);
+            height: 80px;
+
+            width: 100%;
+            z-index: 2;
+
+        }
+
+        h2 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        nav {
+            position: absolute;
+            top: 24px;
+            right: 20px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        main {
+            position: relative;
+            height: 400px;
+        }
+
+        aside {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            height: 400px;
+            background-color: green;
+            width: 30%;
+            text-align: center;
+        }
+
+        main>div {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            height: 400px;
+            background-color: aqua;
+            width: 70%;
+            text-align: center;
+            font-size: 18px;
+            padding-top: 10px;
+        }
+
+        main>div>section {
+            margin: 20px auto;
+            padding: 40px;
+            border: 1px solid #fff
+        }
+
+        footer {
+            background-color: #8b3131;
+            padding: 50px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <h2>Logo</h2>
+        <nav>
+            <ul>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside>
+            aside
+        </aside>
+        <div>
+            <section>section 1</section>
+            <section>section 2</section>
+            <section>section 3</section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy;copyright reserved</p>
+    </footer>
+</body>
+
+</html>

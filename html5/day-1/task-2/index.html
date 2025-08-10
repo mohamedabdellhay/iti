@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task -2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body>div {
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            place-items: center;
+        }
+
+        body>div>div {
+            border: 1px solid #000;
+            height: 500px;
+            width: 600px;
+            text-align: center;
+            padding: 10px;
+        }
+
+
+        progress {
+            width: 100%;
+            height: 40px;
+            appearance: none;
+
+        }
+
+
+
+        ::-webkit-progress-bar {
+            background-color: #eee;
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(to right, #ff7e5f, #fff47f);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>Progress</h2>
+            <progress min="0" max="100" value="0"></progress>
+            <span id="progress-value">0%</span><span>%</span>
+        </div>
+    </div>
+
+    <script>
+        let progress = document.querySelector("progress");
+        let progressValue = document.querySelector("#progress-value");
+        let count = 0;
+        setInterval(() => {
+            count += 1
+            progress.value = count
+            progressValue.textContent = count;
+            if (count === 100) count = 0
+        }, 100);
+    </script>
+</body>
+
+</html>
