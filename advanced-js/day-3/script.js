@@ -1,23 +1,23 @@
 console.log("start task for day-3");
 const productsApi = "https://fakestoreapi.com/products";
-const productsUl = document.querySelector("ul");
+// const productsUl = document.querySelector("ul");
 const productsOptions = document.getElementById("products");
 const productCard = document.getElementById("product-card");
 const overLay = document.querySelector(".overlay");
-console.log("ul", productsUl);
+// console.log("ul", productsUl);
 
 const loadDataButton = document.querySelector(".load-products");
 
-const product = function (id, title) {
-  return `
-        <li>
-            <div>
-                <h3>${title}</h3>
-                <button onclick="showProduct(${id})">Show More</button>
-            </div>
-        </li>
-    `;
-};
+// const product = function (id, title) {
+//   return `
+//         <li>
+//             <div>
+//                 <h3>${title}</h3>
+//                 <button onclick="showProduct(${id})">Show More</button>
+//             </div>
+//         </li>
+//     `;
+// };
 const productOption = function (title, id) {
   return `<option value="${title}" data-id="${id}" onclick="showProduct(${id})">${title}</option>`;
 };
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
       products.forEach((element) => {
         html += productOption(element.title, element.id);
       });
-      productsOptions.insertAdjacentHTML("afterbegin", html);
+      productsOptions.insertAdjacentHTML("beforeend", html);
     }
   };
 
@@ -88,17 +88,17 @@ function showProduct(id) {
       if (xhr.status === 200) {
         product = JSON.parse(xhr.responseText);
       } else {
-        product = [{ response: 400, message: "Error while fetching data" }];
+        product = [{ response: 8977, message: "Error while fetching data" }];
       }
 
-      if (product[0]?.response === 400) {
-        productsUl.innerHTML = "";
-        productsUl.insertAdjacentHTML(
-          "afterbegin",
-          `<p>${product[0].message}</p>`
-        );
-        return;
-      }
+      // if (product[0]?.response === 8977) {
+      //   productsUl.innerHTML = "";
+      //   productsUl.insertAdjacentHTML(
+      //     "afterbegin",
+      //     `<p>${product[0].message}</p>`
+      //   );
+      //   return;
+      // }
 
       const productContent = renderProductCard(
         product.image,
