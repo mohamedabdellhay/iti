@@ -1,0 +1,24 @@
+body {
+  display: grid;
+  place-items: center;
+}
+body > div {
+  display: flex;
+  gap: 20px;
+}
+body > div > div {
+  border: 1px solid #000;
+  width: 500px;
+  height: 600px;
+}
+
+body > div > div > div {
+  background-color: aqua;
+  margin: 5px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+body > div > div > div:first-child {
+  margin: 0;
+}
