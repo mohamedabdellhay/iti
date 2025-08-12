@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>مشغل الفيديو/الصوت عبر API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            text-align: center;
+            padding: 30px;
+        }
+
+        input {
+            padding: 10px;
+            width: 350px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        audio,
+        video {
+            margin-top: 20px;
+            max-width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎵 مشغل الصوت/الفيديو عبر API</h1>
+    <input type="text" id="mediaUrl" placeholder="أدخل رابط الفيديو أو الصوت">
+    <button id="playBtn">تشغيل</button>
+
+    <div id="playerArea"></div>
+
+    <script>
+        const API_BASE = "http://localhost:3000";
+
+        document.getElementById('playBtn').addEventListener('click', async () => {
+            const originalUrl = document.getElementById('mediaUrl').value.trim();
+            if (!originalUrl) return alert('من فضلك أدخل رابط صحيح');
+
+            const playerArea = document.getElementById('playerArea');
+            playerArea.innerHTML = '⏳ جاري التحميل...';
+
+            try {
+                const proxyUrl = `${API_BASE}/proxy?url=${encodeURIComponent(originalUrl)}`;
+                const res = await fetch(proxyUrl);
+
+                // Verify content type
+                const contentType = res.headers.get('content-type');
+                console.log("Content-Type:", contentType);
+
+                if (!contentType || !contentType.includes('audio/')) {
+                    const textPreview = await res.text();
+                    throw new Error(`
+                الخادم قام بإرجاع بيانات غير صوتية
+                نوع المحتوى: ${contentType || 'غير معروف'}
+                البداية: ${textPreview.substring(0, 200)}
+            `);
+                }
+
+                const blob = await res.blob();
+                const objectUrl = URL.createObjectURL(blob);
+
+                const media = document.createElement('audio');
+                media.controls = true;
+                media.src = objectUrl;
+
+                media.onerror = () => {
+                    console.error('Media error:', media.error);
+                    playerArea.innerHTML = `
+                <p style="color:red;">
+                    خطأ في تشغيل الملف الصوتي: ${media.error.message}
+                </p>
+            `;
+                };
+
+                playerArea.innerHTML = '';
+                playerArea.appendChild(media);
+
+            } catch (err) {
+                console.error('Error:', err);
+                playerArea.innerHTML = `
+            <div style="color: red; white-space: pre-wrap;">
+                ⚠ ${err.message}
+            </div>
+            <p>الرجاء التأكد من الرابط وحاول مرة أخرى</p>
+        `;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

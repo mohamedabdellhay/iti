@@ -1,102 +1,169 @@
-const image = document.querySelector("img");
-const title = document.querySelector(".title");
-const backward = document.querySelector("#fa-backward");
-const play = document.querySelector("#fa-play");
-const stop = document.querySelector("#fa-stop");
-const forward = document.querySelector("#fa-forward");
-const volumeMute = document.querySelector("#fa-volume-mute");
-const seek = document.getElementById("seek");
-const volume = document.getElementById("volume");
-
-const data = [
-  {
-    title: "Alfateha",
-    path: "./songs/001.mp3",
-    image:
-      "https://www.shutterstock.com/image-vector/holy-quran-islamic-book-calligraphy-600nw-281022530.jpg",
+const AudioPlayer = {
+  elements: {
+    image: document.querySelector(".player img"),
+    title: document.querySelector(".player .title"),
+    seek: document.getElementById("seek"),
+    volume: document.getElementById("volume"),
+    buttons: {
+      backward: document.querySelector("#fa-backward"),
+      play: document.querySelector("#fa-play"),
+      stop: document.querySelector("#fa-stop"),
+      forward: document.querySelector("#fa-forward"),
+      volumeMute: document.querySelector("#fa-volume-mute"),
+    },
+    audio: document.createElement("audio"),
   },
-  {
-    title: "AlIkhlas",
-    path: "./songs/112.mp3",
-    image:
-      "https://www.shutterstock.com/image-vector/holy-quran-islamic-book-calligraphy-600nw-281022530.jpg",
+
+  playlist: [
+    {
+      title: "Alfateha",
+      path: "./songs/001.mp3",
+      image:
+        "https://www.shutterstock.com/image-vector/holy-quran-islamic-book-calligraphy-600nw-281022530.jpg",
+    },
+    {
+      title: "AlIkhlas",
+      path: "./songs/112.mp3",
+      image:
+        "https://www.shutterstock.com/image-vector/holy-quran-islamic-book-calligraphy-600nw-281022530.jpg",
+    },
+    {
+      title: "AnNas",
+      path: "./songs/114.mp3",
+      image:
+        "https://www.shutterstock.com/image-vector/holy-quran-islamic-book-calligraphy-600nw-281022530.jpg",
+    },
+  ],
+
+  state: {
+    currentTrack: 0,
+    isPlaying: false,
+    isMuted: false,
   },
-  {
-    title: "AnNas",
-    path: "./songs/114.mp3",
-    image:
-      "https://www.shutterstock.com/image-vector/holy-quran-islamic-book-calligraphy-600nw-281022530.jpg",
+
+  init() {
+    document.body.appendChild(this.elements.audio);
+    this.setupEventListeners();
+    this.renderTrack(this.state.currentTrack);
   },
-];
 
-const audio = document.createElement("audio");
-document.body.appendChild(audio);
+  setupEventListeners() {
+    const { buttons, seek, volume, audio } = this.elements;
 
-let currentSurah = 0;
+    buttons.play.addEventListener("click", () => this.togglePlay());
+    buttons.stop.addEventListener("click", () => this.stop());
+    buttons.forward.addEventListener("click", () => this.nextTrack());
+    buttons.backward.addEventListener("click", () => this.previousTrack());
+    buttons.volumeMute.addEventListener("click", () => this.toggleMute());
+    seek.addEventListener("input", () => this.seek());
+    volume.addEventListener("input", () => this.adjustVolume());
+    audio.addEventListener("timeupdate", () => this.updateSeek());
+    audio.addEventListener("loadedmetadata", () => this.onMetadataLoaded());
+    audio.addEventListener("ended", () => this.onTrackEnded());
+  },
 
-function renderSong(index) {
-  audio.src = data[index].path;
-  image.src = data[index].image;
-  title.textContent = data[index].title;
+  renderTrack(index) {
+    const { audio, image, title, seek } = this.elements;
+    const track = this.playlist[index];
 
-  audio.addEventListener("loadedmetadata", () => {
-    seek.max = audio.duration;
+    audio.src = track.path;
+    image.src = track.image;
+    image.alt = track.title;
+    title.textContent = track.title;
     seek.value = 0;
-  });
-}
+    this.updateVolumeIcon();
+  },
 
-play.addEventListener("click", (event) => {
-  const status = Number(event.target.dataset.play);
-  console.log(status);
-  if (status === 0) {
-    audio.play();
-    event.target.dataset.play = 1;
-    play.classList.remove("fa-play");
-    play.classList.add("fa-pause");
-    return;
-  }
-  audio.pause();
-  event.target.dataset.play = 0;
-  play.classList.remove("fa-pause");
-  play.classList.add("fa-play");
-});
+  togglePlay() {
+    const { audio, buttons } = this.elements;
+    this.state.isPlaying = !this.state.isPlaying;
 
-stop.addEventListener("click", () => {
-  audio.pause();
-  audio.currentTime = 0;
-  stop.classList.remove("fa-stop");
-  stop.classList.add("fa-pause");
-});
+    if (this.state.isPlaying) {
+      audio.play().catch((e) => console.error("Playback failed:", e));
+      buttons.play.classList.remove("fa-play");
+      buttons.play.classList.add("fa-pause");
+      buttons.play.dataset.play = "1";
+    } else {
+      audio.pause();
+      buttons.play.classList.remove("fa-pause");
+      buttons.play.classList.add("fa-play");
+      buttons.play.dataset.play = "0";
+    }
+  },
 
-forward.addEventListener("click", () => {
-  currentSurah = (currentSurah + 1) % data.length;
-  renderSong(currentSurah);
-  audio.play();
-});
+  stop() {
+    const { audio, buttons } = this.elements;
+    this.state.isPlaying = false;
+    audio.pause();
+    audio.currentTime = 0;
+    buttons.play.classList.remove("fa-pause");
+    buttons.play.classList.add("fa-play");
+    buttons.play.dataset.play = "0";
+  },
 
-backward.addEventListener("click", () => {
-  currentSurah = (currentSurah - 1 + data.length) % data.length;
-  renderSong(currentSurah);
-  audio.play();
-});
+  nextTrack() {
+    this.state.currentTrack =
+      (this.state.currentTrack + 1) % this.playlist.length;
+    this.renderTrack(this.state.currentTrack);
+    if (this.state.isPlaying) {
+      this.elements.audio
+        .play()
+        .catch((e) => console.error("Playback failed:", e));
+    }
+  },
 
-seek.addEventListener("input", () => {
-  audio.currentTime = seek.value;
-});
+  previousTrack() {
+    this.state.currentTrack =
+      (this.state.currentTrack - 1 + this.playlist.length) %
+      this.playlist.length;
+    this.renderTrack(this.state.currentTrack);
+    if (this.state.isPlaying) {
+      this.elements.audio
+        .play()
+        .catch((e) => console.error("Playback failed:", e));
+    }
+  },
 
-audio.addEventListener("timeupdate", () => {
-  seek.value = audio.currentTime;
-});
+  seek() {
+    this.elements.audio.currentTime = this.elements.seek.value;
+  },
 
-volume.addEventListener("input", () => {
-  audio.volume = volume.value;
-});
+  adjustVolume() {
+    const { audio, volume } = this.elements;
+    audio.volume = volume.value;
+    this.state.isMuted = volume.value == 0;
+    this.updateVolumeIcon();
+  },
 
-volumeMute.addEventListener("click", () => {
-  audio.muted = !audio.muted;
-  volumeMute.classList.toggle("muted", audio.muted);
-});
+  toggleMute() {
+    const { audio, volume } = this.elements;
+    this.state.isMuted = !this.state.isMuted;
+    audio.muted = this.state.isMuted;
+    volume.value = this.state.isMuted ? 0 : 0.3;
+    audio.volume = volume.value;
+    this.updateVolumeIcon();
+  },
 
-window.addEventListener("load", () => {
-  renderSong(currentSurah);
-});
+  updateVolumeIcon() {
+    const { buttons, volume } = this.elements;
+    buttons.volumeMute.classList.toggle("fa-volume-mute", volume.value == 0);
+    buttons.volumeMute.classList.toggle("fa-volume-high", volume.value != 0);
+  },
+
+  updateSeek() {
+    this.elements.seek.value = this.elements.audio.currentTime;
+  },
+
+  onMetadataLoaded() {
+    const { seek, volume, audio } = this.elements;
+    seek.max = audio.duration;
+    audio.volume = volume.value;
+    this.updateVolumeIcon();
+  },
+
+  onTrackEnded() {
+    this.nextTrack();
+  },
+};
+
+window.addEventListener("load", () => AudioPlayer.init());
