@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 400px;
+            padding: 5px;
+            border: 2px solid black;
+        }
+
+        tr,
+        td {
+            border: 1px solid black;
+        }
+
+        div {
+            padding: 10px;
+        }
+    </style>
+    <script>
+        // console.log("script start..");
+        // let;
+        // setTimeout(function myfun(){
+        //     console.log("hello from timer...");
+        // },0);
+        // console.log("script end..");
+
+        // v0.1
+        // const getNames=function(){
+        //     // db 
+        //     setTimeout(()=>{
+        //         console.log("hi")
+        //         return ["ali",'ahmed','noor'];
+        //     },2000);
+        // }
+        // v0.2
+        const getNames = function () {
+            // db 
+            return new Promise((resolve, reject) => {
+                resolve(["ali", "noor"]);
+                // reject("sorry i 'm busy now..");
+            })
+        }
+
+
+        // call
+        // console.log(getNames());
+        // then , async
+        // getNames()
+        // .then(data=>console.log(data))
+        // .catch(e=>console.log(e))
+        // async function test(){
+
+        //     let result=getNames();
+        //     console.log(result);
+        // }
+
+
+
+
+
+    </script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <input type="button" value="load text" />
+    <input type="button" value="load html" />
+    <input type="button" value="load internal json" />
+    <input type="button" value="load external json" />
+    <input type="button" value="get all users" />
+    <input type="button" value="get user with id=1" />
+    <input type="button" value="get all product" />
+    <input type="button" value="Post product" />
+
+    <div></div>
+
+    <div>
+        <h5>Update Product</h5>
+        <input type="text" name="id">
+        <input type="text" name="productName">
+        <button type="button" class="update">Update</button>
+    </div>
+
+    <div>
+        <h5>Delete Product</h5>
+        <input type="text" name="id" class="deleted-product-id">
+        <button class="delete">Delete</button>
+    </div>
+</body>
+
+</html>

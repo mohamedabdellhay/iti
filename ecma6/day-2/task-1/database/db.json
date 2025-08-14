@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "10",
+      "name": "khaled",
+      "age": 20
+    },
+    {
+      "id": "20",
+      "name": "Ahmed",
+      "age": 25
+    },
+    {
+      "id": "30",
+      "name": "hana",
+      "age": 26
+    }
+  ],
+  "Products": [
+    {
+      "productName": "65546",
+      "id": "1"
+    },
+    {
+      "id": "26a3",
+      "productName": "product2",
+      "cost": 20
+    },
+    {
+      "id": "39ec",
+      "productName": "product2",
+      "cost": 20
+    },
+    {
+      "id": "0ebc",
+      "productName": "product2",
+      "cost": 20
+    },
+    {
+      "id": "286b",
+      "productName": "product2",
+      "cost": 20
+    },
+    {
+      "id": "b6e5",
+      "productName": "product2",
+      "cost": 20
+    },
+    {
+      "id": "5fd5",
+      "productName": "product2",
+      "cost": 20
+    },
+    {
+      "id": "b8fb",
+      "productName": "product2",
+      "cost": 20
+    }
+  ]
+}
