@@ -6,18 +6,21 @@ let getALLbtn = document.querySelectorAll("input")[4];
 let getByIDbtn = document.querySelectorAll("input")[5];
 let getProductBtn = document.querySelectorAll("input")[6];
 let postProductBtn = document.querySelectorAll("input")[7];
-let targetDiv = document.querySelector("div");
+let targetDiv = document.querySelector("div.content-area");
+const createProductBtn = document.querySelector(".create");
 const updateBtn = document.querySelector(".update");
 const productId = document.querySelector("input[name='id']");
 const productName = document.querySelector("input[name='productName']");
 const deletedProductId = document.querySelector(".deleted-product-id");
 const deleteProductBtn = document.querySelector(".delete");
+const ProductFormInputs = document.querySelector(".group-inputs");
 
 // helper functions
-const localURL = function (path) {
-  return `http://localhost:5000/${path}`;
-};
 
+// function to return full uri
+const localURL = (path) => `http://localhost:5000/${path}`;
+
+// function to render single row in table
 const renderTableRow = function (tr) {
   const row = document.createElement("tr");
   for (td in tr) {
@@ -28,6 +31,7 @@ const renderTableRow = function (tr) {
   return row;
 };
 
+// function to render table body using renderTableRow function
 const renderTable = function (data) {
   const table = document.createElement("table");
   console.log("is array from table", !Array.isArray(data));
@@ -38,14 +42,14 @@ const renderTable = function (data) {
   return table;
 };
 
-const fetchData = async function (path) {
-  let res = await fetch(path);
-  return res;
-};
+// function to fetch data from url and return promise object
+const fetchData = async (path) => await fetch(path);
 
+// function to check response type and decide which function should run
 const checkResponseType = async function (path) {
   const response = await fetchData(path);
   const contentType = response.headers.get("content-type");
+  console.log("content type ", contentType);
   if (contentType && contentType.includes("text/")) {
     console.log("Response is text-based.");
     return response.text(); // Process as text
@@ -54,6 +58,7 @@ const checkResponseType = async function (path) {
   }
 };
 
+//  function to render data in target dev based on checkResponseType return value
 const renderData = async function (path) {
   const data = await checkResponseType(path);
   console.log(data);
@@ -65,59 +70,72 @@ const renderData = async function (path) {
   targetDiv.appendChild(renderTable(data));
 };
 
+const productService = async function (type, data = {}) {
+  console.log("type", type);
+  if (type === "post") {
+    let response = await fetch(localURL("Products"), {
+      method: type,
+      body: JSON.stringify(data),
+    });
+    let product = await response.json();
+    console.log(product);
+    return;
+  } else if (type === "put") {
+    console.log("method", type);
+    let product = await fetch(localURL(`Products/${data.id}`));
+    const status = product.status;
+    if (status === 200) {
+      const updatedProduct = await fetch(localURL(`Products/${data.id}`), {
+        method: type,
+        body: JSON.stringify(data),
+      });
+      console.log("updated", updatedProduct);
+      return;
+    }
+    console.log("product Not found", status);
+  } else if (type === "delete") {
+    const updatedProduct = await fetch(localURL(`Products/${data.id}`), {
+      method: type,
+    });
+    console.log("deleted", updatedProduct);
+  } else {
+    console.log("unknown method type!");
+  }
+};
+// productService("post", { productName: "mohamed abdellhay", cost: 500 });
 textBtn.addEventListener("click", () => renderData("test.txt")); // end txt
 htmlBtn.addEventListener("click", () => renderData("test.html")); // end html
 jsonBtn.addEventListener("click", () => renderData("test.json")); // end json
-jsonExBtn.addEventListener("click", () =>
-  renderData("https://jsonplaceholder.typicode.com/posts")
-);
 getALLbtn.addEventListener("click", () => renderData(localURL("users")));
 getByIDbtn.addEventListener("click", () => renderData(localURL("users/10")));
 getProductBtn.addEventListener("click", () => renderData(localURL("Products")));
+jsonExBtn.addEventListener("click", () =>
+  renderData("https://jsonplaceholder.typicode.com/posts")
+); //end external
 
-postProductBtn.addEventListener("click", async () => {
-  let obj = {
-    productName: "product2",
-    cost: 20,
-  };
-  let res = await fetch(localURL("Products"), {
-    method: "post",
-    body: JSON.stringify(obj),
-  });
-  let data = await res.json();
-  console.log(data);
-}); // end json
-
-updateBtn.addEventListener("click", async function (e) {
-  e.preventDefault();
-  const id = productId.value.trim();
-  const pName = productName.value.trim();
-  console.log(id, pName);
-  let product = await fetch(localURL(`Products/${id}`));
-  const status = await product.status;
-  if (status === 200) {
-    const obj = {
-      id: id,
-      productName: pName,
-    };
-    const updatedProduct = await fetch(localURL(`Products/${id}`), {
-      method: "put",
-      body: JSON.stringify(obj),
-    });
-    console.log("updated", updatedProduct);
-
-    return;
-  }
-  console.log("product Not found", status);
+createProductBtn.addEventListener("click", () => {
+  const inputs = ProductFormInputs.querySelectorAll("*");
+  console.log("inputs", inputs);
+  return;
+  productService("post", { productName: "product2", cost: 20 });
 });
 
-async function deleteProduct(id) {
-  const updatedProduct = await fetch(localURL(`Products/${id}`), {
-    method: "delete",
-  });
-  console.log("deleted", updatedProduct);
-}
+updateBtn.addEventListener("click", function (e) {
+  console.log(e);
+  const id = productId.value.trim();
+  const updatedValue = document
+    .querySelector("input[name='updatedProductName']")
+    .value.trim();
+  if (!updatedValue) return;
+  console.log(id, productName.value.trim());
+  productService("put", { id: id, productName: updatedValue });
+});
 
 deleteProductBtn.addEventListener("click", () =>
-  deleteProduct(deletedProductId.value)
+  productService("delete", { id: deletedProductId.value })
 );
+
+document.querySelector(".add-more").addEventListener("click", function () {
+  let html = `<input type="text" placeholder="Enter Row of data" class="form-control product-data">`;
+  ProductFormInputs.insertAdjacentHTML("beforeend", html);
+});

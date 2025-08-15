@@ -4,92 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        table {
-            width: 400px;
-            padding: 5px;
-            border: 2px solid black;
-        }
-
-        tr,
-        td {
-            border: 1px solid black;
-        }
-
-        div {
-            padding: 10px;
-        }
-    </style>
-    <script>
-        // console.log("script start..");
-        // let;
-        // setTimeout(function myfun(){
-        //     console.log("hello from timer...");
-        // },0);
-        // console.log("script end..");
-
-        // v0.1
-        // const getNames=function(){
-        //     // db 
-        //     setTimeout(()=>{
-        //         console.log("hi")
-        //         return ["ali",'ahmed','noor'];
-        //     },2000);
-        // }
-        // v0.2
-        const getNames = function () {
-            // db 
-            return new Promise((resolve, reject) => {
-                resolve(["ali", "noor"]);
-                // reject("sorry i 'm busy now..");
-            })
-        }
-
-
-        // call
-        // console.log(getNames());
-        // then , async
-        // getNames()
-        // .then(data=>console.log(data))
-        // .catch(e=>console.log(e))
-        // async function test(){
-
-        //     let result=getNames();
-        //     console.log(result);
-        // }
-
-
-
-
-
-    </script>
-    <script src="script.js" defer></script>
+    <title>Ecma Script 6 day 2 task-1</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
-    <input type="button" value="load text" />
-    <input type="button" value="load html" />
-    <input type="button" value="load internal json" />
-    <input type="button" value="load external json" />
-    <input type="button" value="get all users" />
-    <input type="button" value="get user with id=1" />
-    <input type="button" value="get all product" />
-    <input type="button" value="Post product" />
+    <div class="container">
+        <!-- <div class="header">
+            <h1>Product Management System</h1>
+            <p>Manage your products and data with ease</p>
+        </div> -->
 
-    <div></div>
+        <div class="actions-grid">
+            <input type="button" value="Load Text" />
+            <input type="button" value="Load HTML" />
+            <input type="button" value="Load Internal JSON" />
+            <input type="button" value="Load External JSON" />
+            <input type="button" value="Get All Users" />
+            <input type="button" value="Get User (ID=1)" />
+            <input type="button" value="Get All Products" />
 
-    <div>
-        <h5>Update Product</h5>
-        <input type="text" name="id">
-        <input type="text" name="productName">
-        <button type="button" class="update">Update</button>
-    </div>
+        </div>
 
-    <div>
-        <h5>Delete Product</h5>
-        <input type="text" name="id" class="deleted-product-id">
-        <button class="delete">Delete</button>
+        <div class="content-area">
+            Content will be displayed here...
+        </div>
+
+        <div class="form-section">
+            <div class="form-group">
+                <h5>Create Product</h5>
+                <div class="group-inputs">
+                    <input type="text" name="productName" placeholder="Product name" class="form-control">
+                </div>
+                <button class="add-more">+</button>
+                <!-- <input type="text" name="productName" placeholder="Product Name" class="form-control"> -->
+                <button class="create">Create Product</button>
+            </div>
+
+            <div class="form-group">
+                <h5>Update Product</h5>
+                <input type="text" name="id" placeholder="Product ID" class="form-control">
+                <input type="text" name="updatedProductName" placeholder="Product Name" class="form-control">
+                <button class="update">Update Product</button>
+            </div>
+
+            <div class="form-group">
+                <h5>Delete Product</h5>
+                <input type="text" name="id" class="deleted-product-id form-control" placeholder="Product ID to delete">
+                <button class="delete">Delete Product</button>
+            </div>
+        </div>
     </div>
 </body>
 
