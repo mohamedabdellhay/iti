@@ -171,6 +171,25 @@ select {
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* styling search */
+.search {
+  margin: 20px 0;
+  padding: 0 10px;
+}
+.search > input {
+  display: block;
+  width: 100%;
+  padding: 10px 10px;
+  outline: none;
+  font-size: 18px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   body {

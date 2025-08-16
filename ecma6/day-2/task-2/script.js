@@ -4,6 +4,10 @@ const state = {
   currentPage: 0,
   pagesCount: null,
   postsPerPage: 10,
+  search: {
+    value: null,
+    data: [],
+  },
 };
 
 // dom selection
@@ -11,6 +15,7 @@ const tableBody = document.querySelector(".posts>table>tbody");
 const pagesButtonsContainer = document.querySelector(".pagination>.pages");
 const selectPageCounter = document.querySelector(".pagination>select");
 const pageStatus = document.querySelector(".page-status>span");
+const searchBox = document.querySelector(".search > input");
 
 console.log("select", selectPageCounter);
 
@@ -21,7 +26,7 @@ selectPageCounter.addEventListener("input", function (event) {
 });
 
 // helpers
-const URI = "https://jsonplaceholder.typicode.com/posts";
+const URI = "http://localhost:5000/posts";
 
 // function to render state object
 const fetchData = async function () {
@@ -62,10 +67,10 @@ const createPaginationContainer = function (length, page) {
 };
 
 // render table body
-const renderTableBody = (startIndex, endIndex) => {
+const renderTableBody = (posts, startIndex, endIndex) => {
   // const startIndex = countPerPage * page;
   // const endIndex = (page + 1) * 10;
-  const data = state.posts.slice(startIndex, endIndex);
+  const data = posts.slice(startIndex, endIndex);
   const pageContent = data.map((ele) => createTableRow(ele)).join("");
   tableBody.innerHTML = "";
   tableBody.insertAdjacentHTML("afterbegin", pageContent);
@@ -76,14 +81,13 @@ const renderPageStatus = function (show, hidden) {
 // function to render Table
 const renderPage = function (countPerPage, page) {
   state.currentPage = page;
-  state.pagesCount = Math.ceil(state.posts.length / state.postsPerPage);
-  renderTableBody(countPerPage * page, (page + 1) * state.postsPerPage);
+  const posts = state.search.value ? state.search.data : state.posts;
+  state.pagesCount = Math.ceil(posts.length / state.postsPerPage);
+  renderTableBody(posts, countPerPage * page, (page + 1) * state.postsPerPage);
   createPaginationContainer(state.pagesCount, page);
   const postsShowingLength = (state.currentPage + 1) * state.postsPerPage;
   const showing =
-    postsShowingLength > state.posts.length
-      ? state.posts.length
-      : postsShowingLength;
+    postsShowingLength > posts.length ? posts.length : postsShowingLength;
 
   const end = state.posts.length;
   renderPageStatus(showing, end);
@@ -96,6 +100,30 @@ window.addEventListener("click", function (event) {
   renderPage(state.postsPerPage, Number(event.target.dataset.page));
 });
 
+// implement search function
+console.log(searchBox);
+
+searchBox.addEventListener("input", function (event) {
+  setTimeout(() => {
+    const searchKeyWord = event.target.value.trim();
+    if (!searchKeyWord) {
+      renderPage(state.postsPerPage, state.currentPage);
+      state.search.value = null;
+      return;
+    }
+
+    state.search.value = searchKeyWord;
+    // console.log(state);
+    const filteredPosts = state.posts.filter((ele) =>
+      ele.title.includes(searchKeyWord)
+    );
+    // console.log(filteredPosts);
+
+    state.search.data = filteredPosts;
+    // console.log("state", state);
+    renderPage(state.postsPerPage, state.currentPage);
+  }, 500);
+});
 //  call functions
 (async function () {
   await fetchData();
