@@ -123,13 +123,12 @@ searchBox.addEventListener("input", function (event) {
     // console.log("state", state);
     renderPage(state.postsPerPage, state.currentPage);
   }, 500);
-});
-//  call functions
-(async function () {
-  await fetchData();
-  renderPage(state.postsPerPage, 0);
-  console.dir(state);
-})();
+}) -
+  (async function () {
+    await fetchData();
+    renderPage(state.postsPerPage, 0);
+    console.dir(state);
+  })();
 
 console.log("table body", tableBody);
 console.log("pages", pagesButtonsContainer);

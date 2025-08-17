@@ -116,8 +116,11 @@ jsonExBtn.addEventListener("click", () =>
 createProductBtn.addEventListener("click", () => {
   const inputs = ProductFormInputs.querySelectorAll("*");
   console.log("inputs", inputs);
-  return;
-  productService("post", { productName: "product2", cost: 20 });
+
+  productService("post", {
+    productName: `${document.querySelector("#product_name").value}`,
+    cost: 20,
+  });
 });
 
 updateBtn.addEventListener("click", function (e) {
