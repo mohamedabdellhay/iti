@@ -1,0 +1,12 @@
+// mixins for not repeat a peace of code
+
+// @mixin hoverValues($bgColor, $scalVal: 1.5) {
+//   background-color: $bgColor;
+//   color: $primary-color;
+//   transform: scale($scalVal);
+// }
+
+@mixin hoverVal($bgColor, $fontColor: $light-color) {
+  background-color: $bgColor;
+  color: $fontColor;
+}

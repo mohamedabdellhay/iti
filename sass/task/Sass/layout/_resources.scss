@@ -1,0 +1,36 @@
+.resources {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    gap: 86px;
+    .card {
+      cursor: pointer;
+      &__content {
+        background-color: #fff;
+        padding: 15px 10px;
+        overflow: hidden;
+
+        p {
+          box-sizing: border-box;
+          margin: 0 0 1.25rem;
+          font-size: 12.6px;
+          --porto-fs: 12.6px;
+          line-height: 24px;
+          --porto-lh: 24px;
+          margin-bottom: 15px;
+          overflow: hidden;
+          color: $gray-color;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+      }
+      &:hover {
+        box-shadow: 10px 10px 74px -15px rgb(0 0 0 / 33%);
+      }
+    }
+  }
+}

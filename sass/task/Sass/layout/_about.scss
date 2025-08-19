@@ -1,0 +1,81 @@
+$card-height: 100px;
+
+@mixin divCard($bgColor) {
+  flex-grow: 1;
+  background-color: $bgColor;
+  height: $card-height;
+}
+.about {
+  // background-color: #eee;
+  margin-top: -20px;
+  position: relative;
+  z-index: 99;
+  &__header {
+    display: flex;
+
+    div {
+      flex-grow: 1;
+      display: grid;
+      place-items: center;
+      a {
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        line-height: 23px;
+        font-size: 19.6px;
+        color: #ffffff;
+      }
+    }
+  }
+  &__first {
+    @include divCard(#008fe2);
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      z-index: 995;
+      right: -35%;
+      top: 0;
+      border-width: $card-height/2;
+      border-style: solid;
+      border-color: transparent transparent transparent #008fe2;
+    }
+  }
+  &__second {
+    @include divCard(#3aabdd);
+  }
+  &__third {
+    @include divCard($secondary-color);
+  }
+  &__last {
+    @include divCard($primary-color);
+    display: flex;
+  }
+
+  &__content {
+    display: flex;
+    gap: 30px;
+    margin: 60px 20px;
+
+    .text-section {
+      p {
+        color: #000;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        letter-spacing: -0.05em;
+      }
+      a {
+        color: #000;
+        text-decoration: none;
+        font-weight: bolder;
+        display: inline-block;
+        border: 1px solid #000;
+        padding: 15px 20px;
+        margin-top: 50px;
+        &:hover {
+          @include hoverVal($dark-color);
+        }
+      }
+    }
+  }
+}

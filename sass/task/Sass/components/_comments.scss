@@ -1,0 +1,33 @@
+.comments-container {
+  background-color: #2d529f;
+  padding: 50px 0;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  .comments {
+    position: relative;
+    font-size: 24px;
+    padding: 10px 30px;
+    &::before {
+      content: "“";
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &:after {
+      content: "”";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    strong {
+      border-top: 2px solid #fff;
+      font-weight: 700;
+      margin-top: 20px;
+      padding-top: 20px;
+      font-size: 1rem;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+  }
+}

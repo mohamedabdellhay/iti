@@ -1,0 +1,21 @@
+.department {
+  margin-top: 90px;
+  background-color: $light-gray;
+  padding: 40px;
+
+  &__iconRow {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+
+    .card-icon {
+      width: 30%;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+}

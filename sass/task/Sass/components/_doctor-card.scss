@@ -1,0 +1,32 @@
+.doctors-department {
+  display: flex;
+  gap: 20px;
+  padding: 40px 0;
+}
+.doctor-card {
+  img {
+    width: 100%;
+  }
+  .doctor-info {
+    background-color: #fff;
+    padding: 40px 10px;
+    margin-top: -10px;
+    cursor: pointer;
+    &:hover {
+      background-color: $primary-color;
+      .doctor-category {
+        color: #fff;
+      }
+      .doctor-name {
+        color: #fff;
+      }
+    }
+
+    .doctor-category {
+      color: #8e8e8e;
+    }
+    .doctor-name {
+      color: #1d2127;
+    }
+  }
+}

@@ -1,26 +1,62 @@
-class User {
-  constructor(name, age, email) {
-    this.name = name;
-    this.age = age;
-    this.email = email;
+class Person {
+  #name;
+  #age;
+  #email;
+
+  constructor(_name, _age, _email) {
+    if (new.target === Person) throw new Error("Person is Abstract Class");
+    this.#name = _name;
+    this.#age = _age;
+    this.#email = _email;
   }
 
-  getUserName() {
-    return this.name;
+  set Name(name) {
+    this.#name = name;
+  }
+  get Name() {
+    return this.#name;
+  }
+  set Age(age) {
+    this.#age = age;
+  }
+  get Age() {
+    return this.#age;
+  }
+  set Email(email) {
+    this.#email = email;
+  }
+  get Email() {
+    return this.#email;
+  }
+  displayUserData() {
+    return `userName: ${this.Name} | userAge: ${this.Age} | userEmail: ${this.Email}`;
   }
 }
 
-User.prototype.getEmail = () => {
-  return this.email;
-};
+class Student extends Person {
+  #class;
+  #track;
+  constructor(_name, _age, _email, _class, _track) {
+    super(_name, _age, _email);
+    this.#class = _class;
+    this.#track = _track;
+  }
+  displayUserData() {
+    return `${super.displayUserData()} | class: ${this.#class} | Track: ${
+      this.#track
+    }`;
+  }
+}
 
-// console.dir(User); // user Class
-// console.dir(User.prototype); // object{}
+const stdOne = new Student(
+  "abdellhay",
+  25,
+  "mohamedabdellhay1@gmil.com",
+  "math",
+  "mern"
+);
 
-// const mohamed = new User("mohamed", 25, "mohamedabdellhay@mail.com");
-// console.log(mohamed);
-// console.log(mohamed.__proto__.constructor);
+console.log(stdOne);
+// const pOne = new Person("any", 11, "test@mail.com"); Error
 
-console.log(typeof undefined);
-console.log(typeof null);
-console.log(typeof (() => {}));
+console.log(stdOne.displayUserData());

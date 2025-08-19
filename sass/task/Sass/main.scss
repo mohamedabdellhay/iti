@@ -1,0 +1,28 @@
+// abstract
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+// vendors
+
+// base
+@import "./base/reset";
+@import "./base/topygraphy";
+
+// layout
+@import "./layout/department";
+@import "./layout/header";
+@import "./layout/main";
+@import "./layout/about";
+@import "./layout/resources";
+@import "./layout/insurance";
+@import "./layout/footer";
+
+// components
+@import "./components/btns";
+@import "./components/title";
+@import "./components/cards";
+@import "./components/doctor-card";
+@import "./components/comments";
+
+// pages
+
+// themes

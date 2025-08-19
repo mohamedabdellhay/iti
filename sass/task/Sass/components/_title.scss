@@ -1,0 +1,15 @@
+.section-title {
+  font-family: $main-font;
+
+  &__header {
+    font-weight: 600;
+    text-transform: capitalize;
+    color: $dark-color;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: $gray-color;
+  }
+}

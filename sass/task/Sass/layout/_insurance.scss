@@ -1,0 +1,9 @@
+.insurance__container {
+  display: flex;
+  margin-top: 20px;
+  div {
+    flex-grow: 1;
+    padding: 20px;
+    border: 1px solid #949494;
+  }
+}

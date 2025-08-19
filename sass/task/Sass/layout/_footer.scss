@@ -1,0 +1,21 @@
+footer {
+  background-color: #34383d;
+  color: #fff;
+  .border-bottom {
+    border-bottom: 1px solid #797979;
+  }
+  .container {
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #818181;
+  }
+  ul {
+    list-style: none;
+  }
+
+  .copyright {
+    text-align: center;
+    padding: 20px;
+  }
+}
