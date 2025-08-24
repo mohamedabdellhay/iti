@@ -60,3 +60,29 @@ console.log(stdOne);
 // const pOne = new Person("any", 11, "test@mail.com"); Error
 
 console.log(stdOne.displayUserData());
+console.dir([1] + [1]);
+// Object.prototype.toString = function () {
+//   return Object.keys(this)
+//     .map((key) => `${key}: '${this[key]}'`)
+//     .join(", ");
+// };
+
+// Array.prototype.toString = function () {
+//   throw new Error("toString is not a function");
+// };
+
+console.log(Document.prototype);
+Document.prototype.logMe = (eleSelector) => {
+  const ele = document.querySelector(eleSelector);
+  if (!ele) throw new Error(`${eleSelector} is not found`);
+  console.log(ele);
+};
+
+document.logMe("#root");
+document.logMe("#rouuuot");
+document.getElementById("root").innerText = [1, 2, 3];
+document.getElementById("test").innerText = {
+  name: "test",
+  age: 1,
+  email: "abdellhay@test.test",
+};

@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.bg-gray {
+  background-color: gray;
+  height: 50px;
+}
+.flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.border-2 {
+  border: 2px solid grey;
+  margin: 20px;
+}
+
+header ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.footer {
+  gap: 50px;
+}
+.footer > div {
+  width: 100%;
+}
+
+.footer > div > div {
+  flex-direction: column;
+}
+
+.footer > div > div > p {
+  height: 400px;
+  align-self: center;
+}
+.padding-20 {
+  padding: 20px;
+}

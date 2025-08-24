@@ -8,6 +8,36 @@
 </head>
 
 <body>
+    <div id="root"></div>
+    <div id="test"></div>
+
+
+    <style>
+        div {
+            width: 100vw;
+            display: flex;
+            gap: 15px;
+        }
+
+        div>div {
+            height: 50px;
+            background-color: green;
+        }
+
+        div>div:nth-child(odd) {
+            background-color: yellow;
+        }
+    </style>
+
+
+
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <script src="./script.js"></script>
 </body>
 
