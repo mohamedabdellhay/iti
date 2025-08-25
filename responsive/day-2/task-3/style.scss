@@ -1,0 +1,106 @@
+$card-bg: #ffffff;
+$text-color: #333333;
+$light-text: #bfbfbf;
+$avatar-bg: #e0e0e0;
+
+.grid {
+  display: grid;
+  gap: 10px;
+  &.col-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &.row-2 {
+    grid-template-rows: 1fr 1fr;
+  }
+  .div-1 {
+    background-color: #1a1a1a;
+    grid-column: 1 / 3;
+    grid-row: 1/ 2;
+  }
+  .div-2 {
+    background-color: #c0a5a5;
+    grid-column: 3 / 3;
+    grid-row: 1/ 2;
+  }
+  .div-3 {
+    background-color: #ff5757;
+    grid-column: 4 / 4;
+    grid-row: 1/ 3;
+  }
+  .div-4 {
+    background-color: green;
+  }
+  .div-5 {
+    background-color: #ff5757;
+    grid-column: 2 / 4;
+    grid-row: 2/ 3;
+  }
+
+  @media (max-width: 725px) {
+    &.grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  font-family: Arial, sans-serif;
+  position: relative;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background-color: $avatar-bg;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .author-info {
+      .name {
+        color: $card-bg;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .title {
+        color: $light-text;
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+  }
+
+  &__quote {
+    font-size: 18px;
+    color: $card-bg;
+    line-height: 1.5;
+    margin-bottom: 10px;
+
+    &.add_quote::before {
+      content: "“";
+      font-size: 25rem;
+      color: #e8e8e89e;
+      position: absolute;
+      top: -162px;
+      right: 83px;
+    }
+  }
+
+  &__content {
+    color: $card-bg;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}

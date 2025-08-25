@@ -1,0 +1,316 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+  color: #323642;
+  font-family: Fran, Constantia, Lucida Bright, Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+img {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.container, header .container ul {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+@media (min-width: 576px) {
+  .container, header .container ul {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container, header .container ul {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container, header .container ul {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container, header .container ul {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container, header .container ul {
+    max-width: 1320px;
+  }
+}
+
+header {
+  background-color: #323642;
+  color: #eee;
+  height: 78px;
+  left: 0;
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  text-transform: uppercase;
+  padding: 20px 0;
+  font-size: 14px;
+}
+header .container, header .container ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .container .logo img {
+  width: 60px;
+  height: 44px;
+  min-width: 124px;
+  overflow: hidden;
+}
+header .container svg {
+  fill: #fff;
+  height: 16px;
+  width: 16px;
+}
+header .container ul {
+  list-style: none;
+}
+header .container ul li:after {
+  content: "|";
+  margin: 0 10px;
+}
+header .container ul li:last-child:after {
+  content: "";
+}
+header .mobile {
+  display: none;
+}
+header .mobile ul li:after {
+  content: "";
+}
+header .mobile ul li.search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+header .mobile ul li.search svg {
+  cursor: pointer;
+}
+header .mobile ul li.search input {
+  background: none #fff;
+  border: 1px solid #707070;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #323642;
+  font-weight: 400;
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 0.15s ease-in-out;
+  width: 100%;
+  background-color: #3c404b;
+  border-radius: 12px;
+  min-height: 10px;
+  padding: 5px 12px 5px 42px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+header .mobile .header_menu {
+  height: 21px;
+  overflow: hidden;
+  position: relative;
+  width: 16px;
+  cursor: pointer;
+}
+header .mobile .header_menu span {
+  background-color: #fff;
+  display: block;
+  height: 2px;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
+  transition: all 0.24s ease-in-out;
+  width: 100%;
+}
+header .mobile .header_menu span:first-child {
+  top: 3px;
+}
+header .mobile .header_menu span:last-child {
+  bottom: 1px;
+}
+header .mobile .header_menu.close span:first-child {
+  top: -50px;
+}
+header .mobile .header_menu.close span:nth-child(2) {
+  transform: rotate(45deg);
+}
+header .mobile .header_menu.close span:last-child {
+  transform: rotate(315deg);
+  bottom: 9px;
+}
+header .mobile-menu {
+  background-color: rgba(50, 54, 66, 0.98);
+  bottom: 0;
+  left: 0;
+  min-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 50px;
+  position: fixed;
+  right: 0;
+  top: 68px;
+  z-index: 2;
+}
+header .mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+header .mobile-menu ul li {
+  display: inline-block;
+}
+header .mobile-menu ul li:after {
+  content: "";
+}
+@media (max-width: 1500px) {
+  header .desktop-only {
+    display: none;
+  }
+  header .mobile {
+    display: block;
+  }
+}
+
+.hero {
+  position: relative;
+}
+.hero .inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+}
+.hero .inner div {
+  display: inline-block;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+.hero .inner div h1 {
+  display: inline-block;
+  color: #fff;
+  font-size: 58px;
+  font-size: 4.1428571429rem;
+  font-weight: 900;
+  margin: 0;
+  position: relative;
+  text-transform: uppercase;
+}
+
+section {
+  padding: 50px 0;
+}
+section.introduction {
+  background: #f7f7f7;
+}
+section.introduction .header {
+  display: block;
+  text-transform: uppercase;
+  margin: 20px 15px;
+  position: relative;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: inherit;
+  font-family: Gilroy, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  font-weight: 900;
+  line-height: 1.3;
+}
+section.introduction .header::before {
+  display: block;
+  content: "";
+  background-color: #fde20c;
+  width: 7px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -15px;
+}
+section.introduction .body {
+  font-size: 16px;
+  font-size: 1.1428571429rem;
+  line-height: 1.7;
+  margin: 0 60px 0 0;
+}
+
+.latest-news .header .title {
+  display: block;
+  text-transform: uppercase;
+  position: relative;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: inherit;
+  font-family: Gilroy, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  font-weight: 900;
+  line-height: 1.3;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+.latest-news .header .title::after {
+  content: "";
+  height: 2px;
+  flex-grow: 1;
+  background-color: #fde20c;
+}
+.latest-news .cards-slider {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.latest-news .card {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 350px;
+}
+.latest-news .card div div:last-child {
+  padding: 10px;
+}
+.latest-news .card div div:last-child div {
+  margin: 10px 0;
+}
+.latest-news .card .article-widget, .latest-news .card .article-widget > * {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.latest-news .card .article-widget > *, .latest-news .card .article-widget > * > * {
+  gap: 10px;
+}
+.latest-news .card .article-widget svg {
+  height: 16px;
+  margin: 0 8px 0 0;
+  width: auto;
+}/*# sourceMappingURL=main.css.map */

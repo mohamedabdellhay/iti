@@ -6,6 +6,9 @@ header {
 
 .desktop {
   background-color: $header-bg;
+  padding: 20px 0;
+  height: 70px;
+
   ul {
     li {
       padding: 10px $gap-lg;

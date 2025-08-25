@@ -46,12 +46,43 @@ body {
   text-align: center;
 }
 
+.width-400 {
+  max-width: 400px;
+}
+
+.full-window-height {
+  height: 100vh;
+}
+
+.full-window-width {
+  width: 100vw;
+}
+
+.center-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-width {
+  display: block;
+  width: 100%;
+}
+
+.btn {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 5px;
+}
+
 header ul {
   list-style: none;
 }
 
 .desktop {
   background-color: #fff;
+  padding: 20px 0;
+  height: 70px;
 }
 .desktop ul li {
   padding: 10px 30px;

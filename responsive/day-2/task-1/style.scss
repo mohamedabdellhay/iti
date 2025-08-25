@@ -1,0 +1,47 @@
+.bg-1 {
+  background-color: rgb(170 0 108);
+  height: 300px;
+}
+.bg-2 > div {
+  background-color: rgb(227 60 141);
+  height: 300px;
+}
+.bg-3 > div {
+  background-color: rgb(220 94 157);
+  height: 300px;
+}
+.bg-4 {
+  background-color: rgb(238 123 183);
+  height: 300px;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  &.col-1 {
+    grid-template-columns: 1fr;
+  }
+  &.col-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &.col-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 1000px) {
+    &.col-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &.col-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 500px) {
+    &.col-4 {
+      grid-template-columns: 1fr;
+    }
+    &.col-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+}
