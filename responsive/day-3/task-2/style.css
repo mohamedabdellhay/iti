@@ -1,0 +1,36 @@
+.navbar-custom {
+  background-color: #000;
+}
+
+.hero {
+  background: url("https://cdn.shopify.com/s/files/1/2690/0106/files/DSC_3114-2.jpg?v=1593253928")
+    no-repeat center center;
+  background-size: cover;
+  border-radius: 15px;
+  color: #fff;
+  padding: 50px;
+  margin: 20px 0;
+}
+
+.hero h2 {
+  font-weight: bold;
+  color: #d4ff00;
+}
+
+.sidebar {
+  background: #808080;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.post-meta {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.caption {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
