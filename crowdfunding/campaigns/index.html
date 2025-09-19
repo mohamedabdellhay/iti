@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./sass/main.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./homePage.js" defer type="module"></script>
+    <link rel="stylesheet" href="../sass/main.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../main.js" defer></script>
+    <script src="./campaigns.js" defer type="module"></script>
 
     <!-- global script -->
-    <script src="./script.js" defer></script>
-    <title>Home</title>
+    <script src="../script.js" defer></script>
+    <title>Campaigns</title>
 </head>
 
 <body>
@@ -22,14 +23,14 @@
                     <div class="flex space-between .align-center">
                         <div class="flex justify-center align-center gap-10">
                             <span>
-                                <img src="./images/logo.png" alt="" width="20" class="logo">
+                                <img src="../images/logo.png" alt="" width="20" class="logo">
                             </span>
-                            <a href="./">Fundstart</a>
+                            <a href="../">Fundstart</a>
                         </div>
                         <div>
                             <ul class="flex space-between align-center flex-grow-1">
-                                <li><a href="./dashboard/">Dashboard</a></li>
-                                <li><a href="./campaigns/">Campaigns</a></li>
+                                <li><a href="../dashboard/">Dashboard</a></li>
+                                <li><a href="./">Campaigns</a></li>
                                 <li>Fundraiser</li>
                             </ul>
                         </div>
@@ -39,8 +40,8 @@
                             <div>
                                 <div id="user-auth">
                                     <ul class="flex align-center justify-end">
-                                        <li><a href="/login/">Login</a></li>
-                                        <li><a href="./signup/">Register</a></li>
+                                        <li><a href="../login/">Login</a></li>
+                                        <li><a href="../signup/">Register</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,6 +104,47 @@
 
 
     <main>
+        <div class="container">
+
+            <section id="Campaigns" class="tab-panel margin-top-2">
+                <nav class="header margin-bottom-1">
+                    <div style="display:flex; align-items:center; gap:8px">
+                        <h1 style="margin:0;font-size:22px;font-weight:800">Campaigns</h1>
+                        <!-- <span class="badge">Native HTML + SCSS</span> -->
+                    </div>
+                    <div style="display:flex; gap:8px">
+                        <!-- <button class="btn" id="refreshBtn">Refresh</button> -->
+                    </div>
+                </nav>
+                <div class="card">
+                    <div class="toolbar">
+                        <input id="campSearch" class="input" placeholder="Search campaigns (title)">
+                        <select id="campFilter" class="select">
+                            <option value="all">All approvals</option>
+                            <option value="approved">Approved</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    <table class="table" id="campaignsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Creator</th>
+                                <th>Goal</th>
+                                <th>Deadline</th>
+                                <th>Approved</th>
+                                <th>Rewards</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
 
     </main>
 
@@ -122,7 +164,7 @@
     <footer>
         <div class="footer container">
             <div class="logo">
-                <img src="./images/white-logo.png" alt="logo" />
+                <img src="../images/white-logo.png" alt="logo" />
                 <span>Fundstart</span>
             </div>
             <div class="copyright">

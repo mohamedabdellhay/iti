@@ -1,0 +1,259 @@
+$primary-color: #a9c86e;
+$text-color: #333;
+$border-color: #ddd;
+$font-family: "Arial", sans-serif;
+
+#auth {
+  div {
+    font-family: $font-family;
+    background: #f9f9f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    div {
+      &#root {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        place-items: center;
+        padding: 10px;
+      }
+    }
+  }
+  .container {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    .d-block {
+      display: block;
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: $text-color;
+
+    .back-arrow,
+    .menu {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+
+  .main {
+    padding: 1rem 0;
+
+    .welcome {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+      color: $text-color;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+
+    .form {
+      .form-group {
+        position: relative;
+        margin-bottom: 1rem;
+
+        .icon {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 0.9rem;
+          color: #777;
+        }
+
+        input {
+          width: 100%;
+          padding: 0.7rem 0.7rem 0.7rem 2.2rem;
+          border: 1px solid $border-color;
+          border-radius: 5px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .btn.primary {
+        width: 100%;
+        padding: 0.8rem;
+        background: $primary-color;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+        }
+      }
+    }
+
+    .signup-text {
+      text-align: center;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+
+      a {
+        color: $text-color;
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+
+    .divider {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 0.8rem;
+      color: #777;
+
+      span {
+        background: #fff;
+        padding: 0 0.5rem;
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 25%;
+        height: 1px;
+        background: $border-color;
+        vertical-align: middle;
+        margin: 0 0.5rem;
+      }
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+
+      .btn.social {
+        width: 100%;
+        padding: 0.7rem;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        background: #fff;
+        font-size: 0.9rem;
+        cursor: pointer;
+
+        &.google {
+          color: #db4437;
+        }
+
+        &.facebook {
+          color: #4267b2;
+        }
+      }
+    }
+  }
+
+  /* 📱 Responsive Design */
+  @media (min-width: 600px) {
+    // تابلت صغير
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .main {
+      .welcome {
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .form .btn.primary {
+        font-size: 1.1rem;
+        padding: 1rem;
+      }
+    }
+
+    .social-buttons {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .btn.social {
+        flex: 1;
+        margin: 0 0.3rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    // Desktop
+    body {
+      align-items: center;
+    }
+    .header {
+      padding: 0 35px;
+    }
+    .main .divider::before,
+    .main .divider::after {
+      width: 33%;
+    }
+    .container {
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3rem;
+    }
+
+    .main {
+      flex: 1;
+      padding: 2rem;
+
+      .welcome {
+        text-align: left;
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        text-align: left;
+        font-size: 1.1rem;
+      }
+
+      .form {
+        .form-group input {
+          font-size: 1rem;
+        }
+      }
+
+      .signup-text,
+      .divider {
+        text-align: center;
+      }
+
+      .social-buttons {
+        flex-direction: row;
+
+        .btn.social {
+          flex: 1;
+          margin: 0 0.5rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

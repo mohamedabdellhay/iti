@@ -4,73 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
     <link rel="stylesheet" href="../sass/main.css">
-    <title>Document</title>
 </head>
 
 <body>
+    <div id="auth">
+        <div>
+            <div id="root">
+                <div class="container">
+                    <div class="d-block">
+                        <header class="header">
+                            <span class="back-arrow">←</span>
+                            <h2>Sign in</h2>
+                            <span class="menu">⋮</span>
+                        </header>
 
-    <div class="container">
-        <div class="full-window-height full-window-width ">
+                        <main class="main">
+                            <h3 class="welcome">Welcome Back!</h3>
+                            <p class="subtitle">Please fill in correct Details .</p>
 
-            <div class="flex flex-col align-center">
-                <div class="inner-header flex space-between">
-                    <div>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M6.875 15.3L0.275 8.69996C0.175 8.59996 0.104 8.49163 0.0619998 8.37496C0.0206665 8.25829 0 8.13329 0 7.99996C0 7.86663 0.0206665 7.74163 0.0619998 7.62496C0.104 7.50829 0.175 7.39996 0.275 7.29996L6.875 0.69996C7.05833 0.516627 7.28733 0.420627 7.562 0.411961C7.83733 0.403961 8.075 0.49996 8.275 0.69996C8.475 0.883294 8.57933 1.11229 8.588 1.38696C8.596 1.66229 8.5 1.89996 8.3 2.09996L3.4 6.99996H14.575C14.8583 6.99996 15.096 7.09563 15.288 7.28696C15.4793 7.47896 15.575 7.71663 15.575 7.99996C15.575 8.28329 15.4793 8.52063 15.288 8.71196C15.096 8.90396 14.8583 8.99996 14.575 8.99996H3.4L8.3 13.9C8.48333 14.0833 8.57933 14.3166 8.588 14.6C8.596 14.8833 8.5 15.1166 8.3 15.3C8.11667 15.5 7.88333 15.6 7.6 15.6C7.31667 15.6 7.075 15.5 6.875 15.3Z"
-                                fill="#001E2F" />
-                        </svg>
-                    </div>
-                    <div>Sign in</div>
-                    <div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_1216_209)">
-                                <mask id="mask0_1216_209" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
-                                    width="24" height="24">
-                                    <rect width="24" height="24" fill="#D9D9D9" />
-                                </mask>
-                                <g mask="url(#mask0_1216_209)">
-                                    <path
-                                        d="M12 20C11.45 20 10.9793 19.8043 10.588 19.413C10.196 19.021 10 18.55 10 18C10 17.45 10.196 16.979 10.588 16.587C10.9793 16.1957 11.45 16 12 16C12.55 16 13.021 16.1957 13.413 16.587C13.8043 16.979 14 17.45 14 18C14 18.55 13.8043 19.021 13.413 19.413C13.021 19.8043 12.55 20 12 20ZM12 14C11.45 14 10.9793 13.804 10.588 13.412C10.196 13.0207 10 12.55 10 12C10 11.45 10.196 10.979 10.588 10.587C10.9793 10.1957 11.45 10 12 10C12.55 10 13.021 10.1957 13.413 10.587C13.8043 10.979 14 11.45 14 12C14 12.55 13.8043 13.0207 13.413 13.412C13.021 13.804 12.55 14 12 14ZM12 8C11.45 8 10.9793 7.804 10.588 7.412C10.196 7.02067 10 6.55 10 6C10 5.45 10.196 4.97933 10.588 4.588C10.9793 4.196 11.45 4 12 4C12.55 4 13.021 4.196 13.413 4.588C13.8043 4.97933 14 5.45 14 6C14 6.55 13.8043 7.02067 13.413 7.412C13.021 7.804 12.55 8 12 8Z"
-                                        fill="#001E2F" />
-                                </g>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_1216_209">
-                                    <rect width="24" height="24" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
-                <div class="form">
-                    <div class="form__message">
-                        <h2 class="message__header">Welcome Back!</h2>
-                        <p class="message__content">Please fill in correct Details.</p>
-                    </div>
-                    <div class="form__body">
-                        <form action="" class="flex flex-col ">
-                            <input type="text" name="email" class="f-width">
-                            <input type="text" name="password" class="f-width">
-                            <button class="btn f-width">Sign in</button>
-                        </form>
-                        <div>
-                            <p>No Account ? <a href="/signup">Sign Up</a></p>
-                        </div>
-                    </div>
+                            <form class="form">
+                                <div class="form-group">
+                                    <span class="icon">📧</span>
+                                    <input type="email" placeholder="Email" required>
+                                </div>
 
-                </div>
-                <div class="third-party flex flex-col align-center">
-                    <span>or Sign in with</span>
-                    <button class="btn f-width">Sign Up with Google</button>
-                    <button class="btn f-width">Sign Up with Facebook</button>
+                                <div class="form-group">
+                                    <span class="icon">🔒</span>
+                                    <input type="password" placeholder="Password" required>
+                                </div>
+
+                                <button type="submit" class="btn primary">Sign in</button>
+                            </form>
+
+                            <p class="signup-text">No Account ? <a href="../signup/">Sign Up</a></p>
+
+                            <div class="divider"><span>or Sign in with</span></div>
+
+                            <div class="social-buttons">
+                                <button class="btn social google">Sign Up with Google</button>
+                                <button class="btn social facebook">Sign Up with Facebook</button>
+                            </div>
+                        </main>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 
+    <script src="./login.js"></script>
 </body>
 
 </html>

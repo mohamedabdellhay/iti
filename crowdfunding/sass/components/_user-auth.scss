@@ -1,0 +1,24 @@
+.avatar {
+  position: relative;
+  .user-actions {
+    position: absolute;
+    min-width: 212px;
+    background: #fff;
+    right: 0;
+    top: 45px;
+    padding: 10px 0;
+
+    ul {
+      min-height: 100px;
+      li {
+        padding: 0 10px 15px;
+        button {
+          background: none;
+          border: none;
+          outline: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

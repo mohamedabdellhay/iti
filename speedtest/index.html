@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .speed-display {
+            margin: 20px 0;
+        }
+
+        .speed-value {
+            font-size: 3em;
+            font-weight: 800;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .speed-unit {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .result-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .result-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .result-value {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .status {
+            margin: 15px 0;
+            font-size: 1em;
+            color: #666;
+        }
+
+        #chart {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+        }
+
+        .history {
+            margin-top: 20px;
+            text-align: left;
+            font-size: 0.9em;
+        }
+
+        .history h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .history ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .history li {
+            margin-bottom: 5px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Speed Test</h1>
+
+        <div class="speed-display">
+            <div class="speed-value" id="speedValue">0</div>
+            <div class="speed-unit" id="speedUnit">Mbps</div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="status" id="status">Ready to test your connection</div>
+        <button class="start-btn" id="startBtn" onclick="startTest()">Start Test</button>
+
+        <canvas id="chart"></canvas>
+
+        <div class="results" id="results">
+            <div class="result-item">
+                <div class="result-label">Download</div>
+                <div class="result-value" id="downloadResult">--</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Upload</div>
+                <div class="result-value" id="uploadResult">--</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Ping</div>
+                <div class="result-value" id="pingResult">--</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Jitter</div>
+                <div class="result-value" id="jitterResult">--</div>
+            </div>
+        </div>
+
+        <div class="history">
+            <h3>History</h3>
+            <ul id="historyList"></ul>
+        </div>
+    </div>
+
+    <script>
+        let isTestRunning = false;
+        let testResults = { download: 0, upload: 0, ping: 0, jitter: 0 };
+        let chartCtx, chartData = [];
+
+        // Simple chart drawer
+        function drawChart() {
+            const canvas = document.getElementById("chart");
+            const ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.strokeStyle = "#667eea";
+            ctx.lineWidth = 2;
+            chartData.forEach((val, i) => {
+                const x = i * (canvas.width / chartData.length);
+                const y = canvas.height - (val / Math.max(...chartData)) * canvas.height;
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+        }
+
+        function updateStatus(msg) { document.getElementById("status").textContent = msg; }
+        function updateSpeedValue(val, unit) { document.getElementById("speedValue").textContent = val; document.getElementById("speedUnit").textContent = unit; }
+        function updateProgress(p) { document.getElementById("progressFill").style.width = p + "%"; }
+
+        async function testLatency() {
+            const url = "https://speed.cloudflare.com/__down?bytes=100";
+            const pings = [];
+            for (let i = 0; i < 5; i++) {
+                const start = performance.now();
+                await fetch(url + "?t=" + Date.now());
+                const ping = performance.now() - start;
+                if (ping < 1000) pings.push(ping);
+            }
+            const avg = pings.reduce((a, b) => a + b) / pings.length;
+            const jitter = Math.sqrt(pings.map(p => Math.pow(p - avg, 2)).reduce((a, b) => a + b) / pings.length);
+            testResults.ping = Math.round(avg); testResults.jitter = Math.round(jitter);
+        }
+
+        async function testDownload() {
+            updateStatus("Testing download...");
+            const sizes = [1000000, 5000000, 10000000]; // 1MB,5MB,10MB
+            const speeds = [];
+            for (let size of sizes) {
+                const start = performance.now();
+                await fetch(`https://speed.cloudflare.com/__down?bytes=${size}&t=${Date.now()}`);
+                const dur = (performance.now() - start) / 1000;
+                const mbps = (size * 8 / dur) / (1024 * 1024);
+                speeds.push(mbps); chartData.push(mbps); drawChart();
+            }
+            testResults.download = Math.round(speeds.reduce((a, b) => a + b) / speeds.length);
+        }
+
+        async function testUpload() {
+            updateStatus("Testing upload...");
+            const data = new Uint8Array(500000).fill(1); // 0.5MB
+            const speeds = [];
+            for (let i = 0; i < 3; i++) {
+                const start = performance.now();
+                await fetch("https://speed.cloudflare.com/__up", { method: "POST", body: data });
+                const dur = (performance.now() - start) / 1000;
+                const mbps = (data.length * 8 / dur) / (1024 * 1024);
+                speeds.push(mbps); chartData.push(mbps); drawChart();
+            }
+            testResults.upload = Math.round(speeds.reduce((a, b) => a + b) / speeds.length);
+        }
+
+        function showResults() {
+            document.getElementById("downloadResult").textContent = testResults.download + " Mbps";
+            document.getElementById("uploadResult").textContent = testResults.upload + " Mbps";
+            document.getElementById("pingResult").textContent = testResults.ping + " ms";
+            document.getElementById("jitterResult").textContent = testResults.jitter + " ms";
+
+            // Save to history
+            const li = document.createElement("li");
+            li.textContent = `Down: ${testResults.download} Mbps | Up: ${testResults.upload} Mbps | Ping: ${testResults.ping} ms`;
+            document.getElementById("historyList").prepend(li);
+        }
+
+        async function startTest() {
+            if (isTestRunning) return;
+            isTestRunning = true;
+            chartData = []; drawChart();
+            updateStatus("Running test...");
+            updateSpeedValue("0", "Mbps");
+            document.getElementById("startBtn").disabled = true;
+
+            try {
+                await testLatency();
+                await testDownload();
+                await testUpload();
+                updateStatus("Test Completed ✅");
+                updateSpeedValue("Complete", "");
+                showResults();
+            } catch (e) {
+                updateStatus("Error: " + e.message);
+            } finally {
+                isTestRunning = false;
+                document.getElementById("startBtn").disabled = false;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById("chart");
+            canvas.width = 500; canvas.height = 150;
+        });
+    </script>
+</body>
+
+</html>

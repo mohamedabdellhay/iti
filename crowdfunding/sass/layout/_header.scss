@@ -2,6 +2,14 @@ header {
   ul {
     list-style: none;
   }
+  a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    &.active {
+      color: #3065ba;
+    }
+  }
 }
 
 .desktop {
