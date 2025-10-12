@@ -1,0 +1,9 @@
+section h3 {
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+}
+ul li {
+  margin-bottom: 10px;
+}

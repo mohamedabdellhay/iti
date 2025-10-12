@@ -1,0 +1,12 @@
+<section style="width: 100%;">
+    <h3>skills works!</h3>
+
+    <ul>
+        @for (skill of skills; track skill.title) {
+        <li><app-skill [skillElement]="skill"></app-skill></li>
+
+        } @empty {
+        <div>No items to display.</div>
+        }
+    </ul>
+</section>

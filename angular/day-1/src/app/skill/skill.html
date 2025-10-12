@@ -1,0 +1,10 @@
+<div class="skill">
+    <div>{{ skillElement?.title }}</div>
+    <div class="progress-container"
+        style="background: #eee; border-radius: 8px; height: 20px; width: 100%; margin-top: 8px;">
+        <div class="progress-bar" [style.width.%]="skillElement?.degree"
+            style="background: #4caf50; height: 100%; border-radius: 8px;">
+        </div>
+    </div>
+    <div style="margin-top: 4px;">{{ skillElement?.degree }}%</div>
+</div>

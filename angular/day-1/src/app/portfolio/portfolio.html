@@ -1,0 +1,21 @@
+<section>
+    <h2>Portfolio</h2>
+
+    <div class="projects">
+
+        @for ( project of projects; track project.name){
+        <div class="project">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <a [href]="project.link" target="_blank">View Project</a>
+        </div>
+        }@empty {
+        <p>No projects available at the moment. Please check back later!</p>
+        }
+    </div>
+    <!-- <div *ngFor="let project of projects" class="project">
+        <h3>{{ project.name }}</h3>
+        <p>{{ project.description }}</p>
+        <a [href]="project.link" target="_blank">View Project</a>
+    </div> -->
+</section>

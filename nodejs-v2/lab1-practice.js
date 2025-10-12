@@ -19,7 +19,7 @@ const nameAndStatus = students.map((ele) => {
 console.log("nameAndStatus", nameAndStatus);
 
 const StudentNameAndAge = students.map(
-  (ele) => `${ele.name} (${ele.age} yes old)`
+  (ele) => `${ele.name} (${ele.age} years old)`
 );
 
 console.log("StudentNameAndAge", StudentNameAndAge);

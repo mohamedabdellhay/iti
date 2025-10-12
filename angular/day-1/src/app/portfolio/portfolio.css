@@ -1,0 +1,34 @@
+section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #000;
+}
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.project {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.project h3 {
+  margin: 0 0 10px;
+}
+
+.project p {
+  margin: 0 0 10px;
+}
+
+.project a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}

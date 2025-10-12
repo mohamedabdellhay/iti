@@ -6,12 +6,16 @@ import { fetchJsonData } from "./helper.js";
 const app = express();
 const PORT = 3000;
 app.use(express.json());
+
+
 app.get("/", (req, res) => {
   res.json({
     status: 200,
     message: `app is running on port ${PORT}`,
   });
 });
+
+
 app.use(morgan("dev"));
 
 app.use(async (req, res, next) => {

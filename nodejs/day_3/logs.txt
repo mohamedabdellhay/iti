@@ -2,3 +2,13 @@ url:/todo - method:GETurl:/todo - method:GET - body[object Object]
 url:/todo - method:GET - body{"challenge":"learn Http test","status":"pending","updatedBy":"abdellhay"}
 url:/todo - method:GET - body:{"challenge":"learn Http test","status":"pending","updatedBy":"abdellhay"}
 url:/todo/2 - method:GET - body:{"challenge":"learn Http test","status":"pending","updatedBy":"abdellhay"}
+url:/todo - method:GET - body:{"challenge":"updated Http","startDate":"2025-02-03","status":"pending"}
+url:/todo - method:GET - body:{"challenge":"updated Http","startDate":"2025-02-03","status":"pending"}
+url:/todo/1 - method:GET - body:{"challenge":"updated Http","startDate":"2025-02-03","status":"pending"}
+url:/todo/090 - method:GET - body:{"challenge":"updated Http","startDate":"2025-02-03","status":"pending"}
+url:/todo - method:POST - body:{"challenge":"learn Http test","startDate":"2025-02-03","status":"pending","createdBy":"Ahmed","updatedBy":"reda"}
+url:/todo/6 - method:POST - body:{"challenge":"learn Http test","startDate":"2025-02-03","status":"pending","createdBy":"Ahmed"}
+url:/todo/6 - method:PATCH - body:{"challenge":"learn Http test","startDate":"2025-02-03","status":"pending","createdBy":"Ahmed"}
+url:/todo/6 - method:PATCH - body:{"challenge":"learn Http","updatedBy":"reda"}
+url:/todo/6 - method:GET - body:{"challenge":"learn Http","updatedBy":"reda"}
+url:/todo/ - method:GET - body:{"challenge":"learn Http","updatedBy":"reda"}
