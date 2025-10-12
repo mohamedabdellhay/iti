@@ -1,12 +1,29 @@
-<section style="width: 100%;">
-    <h3>skills works!</h3>
+<section class="py-5 bg-light" style="width: 100%;">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">My Skills</h2>
 
-    <ul>
-        @for (skill of skills; track skill.title) {
-        <li><app-skill [skillElement]="skill"></app-skill></li>
+        <div class="row g-4">
+            @for (skill of skills; track skill.title) {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm p-4 h-100 text-center rounded-4">
+                    <div class="mb-3">
+                        <i class="bi bi-lightning-charge-fill text-success fs-1"></i>
+                    </div>
 
-        } @empty {
-        <div>No items to display.</div>
-        }
-    </ul>
+                    <h5 class="fw-semibold mb-3">{{ skill.title }}</h5>
+
+                    <div class="progress" style="height: 12px; border-radius: 6px; background-color: #eee;">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="skill.degree"
+                            style="background: linear-gradient(90deg, #4caf50, #81c784); border-radius: 6px;">
+                        </div>
+                    </div>
+
+                    <div class="mt-2 fw-semibold text-muted">{{ skill.degree }}%</div>
+                </div>
+            </div>
+            } @empty {
+            <div class="text-center text-muted">No skills to display.</div>
+            }
+        </div>
+    </div>
 </section>

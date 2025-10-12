@@ -1,14 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-.main {
-  background-color: #151515;
-  color: #fff;
-}
-
-.padding-10 {
-  padding: 10px;
 }

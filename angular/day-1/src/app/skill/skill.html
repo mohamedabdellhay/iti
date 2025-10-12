@@ -1,10 +1,14 @@
-<div class="skill">
-    <div>{{ skillElement?.title }}</div>
-    <div class="progress-container"
-        style="background: #eee; border-radius: 8px; height: 20px; width: 100%; margin-top: 8px;">
-        <div class="progress-bar" [style.width.%]="skillElement?.degree"
-            style="background: #4caf50; height: 100%; border-radius: 8px;">
+<div class="skill mb-4">
+    <!-- Skill Title -->
+    <div class="fw-semibold mb-2">{{ skillElement?.title }}</div>
+
+    <!-- Bootstrap Progress Bar -->
+    <div class="progress" style="height: 20px; border-radius: 8px;">
+        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="skillElement?.degree"
+            [attr.aria-valuenow]="skillElement?.degree" aria-valuemin="0" aria-valuemax="100">
         </div>
     </div>
-    <div style="margin-top: 4px;">{{ skillElement?.degree }}%</div>
+
+    <!-- Skill Percentage -->
+    <div class="mt-2 small text-muted">{{ skillElement?.degree }}%</div>
 </div>
