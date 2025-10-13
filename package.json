@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "@primeuix/themes": "^1.2.5",
+    "bootstrap": "^5.3.8",
+    "primeng": "^20.2.0"
   }
 }
