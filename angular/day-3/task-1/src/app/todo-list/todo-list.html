@@ -1,0 +1,8 @@
+<ul class="divide-y divide-gray-200 px-4">
+
+    @for ( task of tasks; track $index ) {
+    <todo-task [title]="task.title" [dueDate]="task.dueDate" [completed]="task.completed"
+        (completedChange)="onCompletedChange($index, $event)">
+    </todo-task>
+    }
+</ul>
