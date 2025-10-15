@@ -1,0 +1,15 @@
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row row-cols-3 row-gap-3">
+            @for (product of products; track $index) {
+
+            <ProductCard [product]="product"></ProductCard>
+            }@empty {
+            <p>
+                No Product Listed
+            </p>
+            }
+        </div>
+
+    </div>
+</section>

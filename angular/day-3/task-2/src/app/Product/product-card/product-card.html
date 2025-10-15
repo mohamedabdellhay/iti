@@ -1,0 +1,29 @@
+<div class="card product-card position-relative">
+    @if (product.availabilityStatus) {
+
+    <span class="badge-stock in">In stock</span>
+    } @else {
+
+    <span class="badge-stock out">Out of stock</span>
+    }
+    <img src="{{product.thumbnail}}" class="card-img-top product-img" alt="Wireless Earbuds">
+    <div class="card-body text-left">
+        <div class="flex justify-between" style="display: flex; justify-content: space-between;">
+            <h5 class="card-title mb-1">{{product.title}}</h5>
+            <p class="price">${{product.price}}</p>
+        </div>
+        <p class="text-muted mb-2 small">{{product.description.split("").splice(0,50).join("")}}...</p>
+        <div class="rating mb-2">
+            {{product.rating}}
+
+            @for (item of arrayOfStars; track $index) {
+            <i class="bi" [ngClass]="$index < product.rating ? 'bi bi-star-fill' : 'bi-star text-secondary'">
+            </i>
+            }
+
+        </div>
+
+        <button class="btn btn-outline-dark mt-2 border-radius-15 hover-transform"
+            (click)="addToCart({id:product.id, title: product.title})">Add to Cart</button>
+    </div>
+</div>
