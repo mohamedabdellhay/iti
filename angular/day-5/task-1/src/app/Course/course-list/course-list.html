@@ -1,0 +1,16 @@
+<div style="margin-top: 30px;">
+    <!-- <AddDepartment></AddDepartment> -->
+    <a routerLink="create" class="btn btn-primary m-4">Create new Course</a>
+    <router-outlet></router-outlet>
+    <!-- <app-create-course></app-create-course> -->
+    <div class="container">
+        <div class="row">
+            @for(std of courses; track std.id){
+            <div class="col">
+                <!-- <studentDetails [stdId]="std.id"></studentDetails> -->
+                <app-course-details [crsId]="std.id"></app-course-details>
+            </div>
+            }
+        </div>
+    </div>
+</div>

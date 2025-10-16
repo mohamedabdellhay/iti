@@ -1,0 +1,19 @@
+<div style="margin-top: 30px;">
+
+    <!-- @if(!path.includes("create")){ -->
+
+    <a routerLink="create">Create new Student</a>
+    <!-- } -->
+    <router-outlet></router-outlet>
+    <div class="container">
+        <div class="row">
+            @for(std of students; track std.id){
+            <div class="col">
+
+                <studentDetails [stdId]="std.id"></studentDetails>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>

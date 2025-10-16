@@ -1,0 +1,92 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{product.thumbnail}}" class="d-block w-100" alt="AeroPress Go Portable Coffee Maker">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="product-card p-4">
+                <h2>{{product.title}}</h2>
+                <p class="text-muted">Brand: {{product.brand}} | SKU: AP-GO-2023</p>
+
+                <div class="d-flex align-items-center mb-2">
+                    <span class="rating-star">★★★★★</span>
+                    <span class="ms-2">{{product.rating}} ({{product.reviews.length}} Reviews)</span>
+                </div>
+
+                <h4 class="text-success">
+                    ${{product.price}}
+                    <small class="text-muted">
+                        ({{product.discountPercentage}}% off)
+                    </small>
+                </h4>
+
+                <p class="low-stock">
+                    Low Stock: Only {{product.stock}} left!
+                </p>
+
+                <p>{{product.description}}</p>
+
+                <ul class="list-unstyled">
+                    <li><strong>Category:</strong> Kitchen Appliances</li>
+                    <li><strong>Tags:</strong> coffee, travel, portable, brewing</li>
+                    <li><strong>Weight:</strong> 0.75 lbs</li>
+                    <li><strong>Dimensions:</strong> 5.3" x 3.5" x 3.5"</li>
+                    <li><strong>Warranty:</strong> 1-Year Limited</li>
+                    <li><strong>Shipping:</strong> Free standard shipping on orders over $50</li>
+                    <li><strong>Return Policy:</strong> 30-Day Money Back Guarantee</li>
+                    <li><strong>Minimum Order Quantity:</strong> 1 unit</li>
+                </ul>
+
+                <button class="btn btn-green btn-lg w-100 bg-success"
+                    (click)="addToCart({id:product.id, title:product.title})">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="product-card p-4">
+                <h3>Customer Reviews</h3>
+                <div class="mb-3">
+                    <p>
+                        <strong>CoffeeGuru22</strong>
+                        <span class="rating-star">★★★★★</span>
+                    </p>
+                    <p>Perfect for my morning commute! Makes a fantastic cup of espresso-style coffee quickly. The
+                        travel case is brilliant.</p>
+                    <p class="text-muted">Posted on 2025-08-15</p>
+                </div>
+                <div class="mb-3">
+                    <p>
+                        <strong>Wanderer_J</strong>
+                        <span class="rating-star">★★★★☆</span>
+                    </p>
+                    <p>Great product, exactly as advertised. Deducting one star because cleaning the plunger is a little
+                        awkward on the go.</p>
+                    <p class="text-muted">Posted on 2025-07-28</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

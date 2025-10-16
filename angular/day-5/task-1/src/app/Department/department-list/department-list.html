@@ -1,0 +1,17 @@
+<div style="margin-top: 30px;">
+
+    <!-- <AddDepartment></AddDepartment> -->
+    <div class="container">
+        <div class="row">
+            @for(std of departments; track std.id){
+            <div class="col">
+
+                <!-- <studentDetails [stdId]="std.id"></studentDetails> -->
+                <app-department-details [deptId]="std.id"></app-department-details>
+            </div>
+            }
+        </div>
+
+
+    </div>
+</div>
