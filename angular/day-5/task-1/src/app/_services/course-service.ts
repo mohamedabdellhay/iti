@@ -16,4 +16,15 @@ export class CourseService {
   createCourse(crs: Course) {
     this.courses.push(crs);
   }
+  updateCourse(crs: Course) {
+    const course = this.courses.findIndex((ele) => ele.id === crs.id);
+    this.courses[course] = crs;
+    console.log(course);
+  }
+  getCourseIndex(crs: Course) {
+    return this.courses.findIndex((ele) => ele.id === crs.id && ele.name == crs.name);
+  }
+  deleteCourse(crs: Course) {
+    this.courses.splice(this.getCourseIndex(crs), 1);
+  }
 }

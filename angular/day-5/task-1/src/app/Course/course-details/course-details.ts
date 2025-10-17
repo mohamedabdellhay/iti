@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Course } from '../../Models/course';
 import { CourseService } from '../../_services/course-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-course-details',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './course-details.html',
   styleUrl: './course-details.css',
 })

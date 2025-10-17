@@ -25,4 +25,11 @@ export class DepartmentService {
   createDepart(dept: Department) {
     this.departments.push(dept);
   }
+  getDepartIndex(dept: Department) {
+    return this.departments.findIndex((ele) => ele.id === dept.id && ele.name == dept.name);
+  }
+
+  deleteDepartment(dept: Department) {
+    this.departments.splice(this.getDepartIndex(dept), 1);
+  }
 }

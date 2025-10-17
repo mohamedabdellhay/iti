@@ -2,9 +2,10 @@
 
     <!-- @if(!path.includes("create")){ -->
 
-    <a routerLink="create">Create new Student</a>
+    <a routerLink="create" class="btn btn-primary m-4">Add Student</a>
     <!-- } -->
     <router-outlet></router-outlet>
+
     <div class="container">
         <div class="row">
             @for(std of students; track std.id){

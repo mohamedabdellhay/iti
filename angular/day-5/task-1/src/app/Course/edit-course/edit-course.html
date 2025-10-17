@@ -1,0 +1,10 @@
+<div style="padding: 15px 10px;">
+    <h3>Edit Course</h3>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Course name and id</span>
+        <input type="text" aria-label="First name" class="form-control" placeholder="Std name" [(ngModel)]="crs.name">
+        <input type="number" aria-label="Last name" class="form-control" placeholder="Std id" [(ngModel)]="crs.id">
+    </div>
+    <div class="mb-3"> <button type="button" class="btn btn-primary" (click)="update()">Update</button>
+    </div>
+</div>

@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Student } from '../../Models/student';
-import { FormsModule } from '@angular/forms';
 import { StudentService } from '../../_services/student-service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-edit-student',
-  imports: [FormsModule],
-  templateUrl: './edit-student.html',
-  styleUrl: './edit-student.css',
+  selector: 'app-delete-student',
+  imports: [],
+  templateUrl: './delete-student.html',
+  styleUrl: './delete-student.css',
 })
-export class EditStudent implements OnInit {
+export class DeleteStudent {
   std!: Student;
   stdId!: string;
 
@@ -19,13 +18,16 @@ export class EditStudent implements OnInit {
     public route: ActivatedRoute,
     public router: Router
   ) {}
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.stdId = params.get('id') || '';
     });
+
     this.std = this.stdService.getStudentById(parseInt(this.stdId));
-  }
-  update() {
-    this.router.navigate(['/students']);
+    this.stdService.deleteStudent(this.std);
+    setTimeout(() => {
+      this.router.navigate(['/courses']);
+    }, 3000);
   }
 }

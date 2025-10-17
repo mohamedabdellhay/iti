@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Department } from '../../Models/department';
 import { DepartmentService } from '../../_services/department-service';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-department-details',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './department-details.html',
   styleUrl: './department-details.css',
 })

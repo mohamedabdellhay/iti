@@ -1,9 +1,6 @@
 import { Routes } from '@angular/router';
-import { StudentList } from './Student/student-list/student-list';
-import { CourseList } from './Course/course-list/course-list';
+
 import { NotFound } from './pages/not-found/not-found';
-// import { DepartmentList } from './Department/department-list/department-list';
-// import { departmentsRoutes } from './Department/departmentsRoute';
 
 export const routes: Routes = [
   {
@@ -16,8 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'departments',
-    loadChildren: () =>
-      import('./pages/departments/departmentsRoute').then((d) => d.departmentsRoutes),
+    loadChildren: () => import('./Department/departmentsRoute').then((d) => d.departmentsRoutes),
   },
 
   {

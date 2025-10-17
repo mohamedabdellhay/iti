@@ -26,10 +26,10 @@ export class StudentService {
       this.students[index] = updatedStudent;
     }
   }
-
-  deleteStudent(index: number) {
-    if (index >= 0 && index < this.students.length) {
-      this.students.splice(index, 1);
-    }
+  getStudentIndex(std: Student) {
+    return this.students.findIndex((ele) => ele.id === std.id && ele.name == std.name);
+  }
+  deleteStudent(std: Student) {
+    this.students.splice(this.getStudentIndex(std), 1);
   }
 }

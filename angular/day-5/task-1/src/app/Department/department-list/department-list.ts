@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentDetails } from '../department-details/department-details';
 import { Department } from '../../Models/department';
 import { DepartmentService } from '../../_services/department-service';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'departmentList',
-  imports: [DepartmentDetails],
+  imports: [DepartmentDetails, RouterOutlet, RouterLink],
   templateUrl: './department-list.html',
   styleUrl: './department-list.css',
 })

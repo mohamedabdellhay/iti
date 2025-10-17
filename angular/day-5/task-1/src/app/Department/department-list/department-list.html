@@ -1,6 +1,8 @@
 <div style="margin-top: 30px;">
 
+    <button routerLink="create" class="btn btn-primary m-4">Add Department</button>
     <!-- <AddDepartment></AddDepartment> -->
+    <router-outlet></router-outlet>
     <div class="container">
         <div class="row">
             @for(std of departments; track std.id){
