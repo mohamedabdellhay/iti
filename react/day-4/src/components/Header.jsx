@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Search, ShoppingCart, User, Menu, X, ChevronDown } from "lucide-react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const cart = useSelector((state) => state.cart.count);
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -62,7 +64,7 @@ export default function Header() {
             >
               <ShoppingCart size={24} />
               <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                3
+                {cart}
               </span>
             </Link>
 

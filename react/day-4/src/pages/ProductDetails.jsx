@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct, deleteProduct } from "../features/cartSlice";
 
 import {
   Star,
@@ -24,6 +26,8 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
 
   const [isWishListed, setIsWishListed] = useState(false);
+  const cart = useSelector((state) => state.cart.product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -170,7 +174,12 @@ export default function ProductDetails() {
 
             {/* Add to Cart */}
             <div className="flex gap-4">
-              <button className="flex-1 bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl">
+              <button
+                onClick={() =>
+                  dispatch(addProduct({ title: product.title, id: product.id }))
+                }
+                className="flex-1 bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl"
+              >
                 Add to Cart
               </button>
               <button className="bg-gray-900 text-white p-4 rounded-xl hover:bg-gray-800 transition">
