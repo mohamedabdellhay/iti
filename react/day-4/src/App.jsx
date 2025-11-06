@@ -1,5 +1,7 @@
 // src/pages/Home.jsx
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadCartFromStorage } from "./features/cartSlice.js";
 import {
   ShoppingBag,
   Truck,
@@ -11,6 +13,16 @@ import {
 import ProductCard from "./components/ProductCard"; // Your card from before
 
 export default function App() {
+  const dispatch = useDispatch();
+  const { isLoaded } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(loadCartFromStorage());
+  }, [dispatch]);
+
+  if (!isLoaded) {
+    return <p>Loading...</p>; // لحد ما يقرأ من localStorage
+  }
   const featured = [
     {
       id: 1,
