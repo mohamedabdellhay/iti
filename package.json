@@ -2,6 +2,9 @@
   "dependencies": {
     "@primeuix/themes": "^1.2.5",
     "bootstrap": "^5.3.8",
+    "express": "^5.1.0",
+    "graphql": "^16.12.0",
+    "mongoose": "^8.19.3",
     "primeng": "^20.2.0"
   }
 }
