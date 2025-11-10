@@ -21,7 +21,7 @@ export default function App() {
   }, [dispatch]);
 
   if (!isLoaded) {
-    return <p>Loading...</p>; // لحد ما يقرأ من localStorage
+    return <p>Loading...</p>;
   }
   const featured = [
     {

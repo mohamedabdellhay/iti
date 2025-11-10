@@ -39,7 +39,8 @@ export const cartSlice = createSlice({
 });
 export const loadCartFromStorage = () => (dispatch) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
-  dispatch(setCartFromStorage(cart));
+  console.log(cart);
+  dispatch(setCartFromStorage(cart.products));
 };
 // Action creators are generated for each case reducer function
 export const { setCartFromStorage, addProduct, deleteProduct, reset } =
