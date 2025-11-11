@@ -1,33 +1,32 @@
 import Image from "next/image";
 export const revalidate = 6000; //60*60*60 // one hour
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const posts = await fetch("https://fakestoreapi.com/products").then((res) =>
     res.json()
   );
 
   const ides = posts.map((product) => ({
-    params: { id: product.id },
+    params: { id: product.id.toString() },
   }));
 
-  return { ides, fallback: "blocking" };
+  return ides;
 }
 
-export async function getStaticProps({ params }) {
+async function getProductById(id) {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    next: {
+      revalidate: 60,
+    },
+  });
+  const product = await res.json();
+  return product;
+}
+
+export default async function ProductPage({ params }) {
   const { id } = await params;
-  const product = await fetch(`https://fakestoreapi.com/products/${id}`).then(
-    (res) => res.json()
-  );
+  const product = await getProductById(id);
 
-  return {
-    props: { product },
-    // Next.js will invalidate the cache when a
-    // request comes in, at most once every 60 seconds.
-    revalidate: revalidate,
-  };
-}
-
-export default async function ProductPage({ product }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
